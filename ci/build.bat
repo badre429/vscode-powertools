@@ -1,0 +1,1 @@
+vsce package --out dist/bmgpowertools.vsix

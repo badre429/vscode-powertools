@@ -1,0 +1,76 @@
+{
+    "name": "bmgvscodepowertools",
+    "displayName": "Bmg VSCode Power Tools",
+    "description": "A set of tools  which improves developer productivity inside VSCode.",
+    "version": "1.0.0",
+    "publisher": "badre429",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.bmg.archiver",
+        "onCommand:extension.bmg.i18n",
+        "onCommand:extension.bmg.sort",
+        "onCommand:extension.bmg.hash",
+        "onCommand:extension.bmg.encode",
+        "onCommand:extension.bmg.decode"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.bmg.archiver",
+                "title": "Archive Workspace Folder"
+            },
+            {
+                "command": "extension.bmg.hash",
+                "title": "Hash string"
+            },
+            {
+                "command": "extension.bmg.encode",
+                "title": "Encode string"
+            },
+            {
+                "command": "extension.bmg.decode",
+                "title": "Decode string"
+            },
+            {
+                "command": "extension.bmg.i18n",
+                "title": "I18n"
+            },
+            {
+                "command": "extension.bmg.sort",
+                "title": "Sort Lines"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test",
+        "build": "vsce package --out dist/bmgpowertools.vsix"
+    },
+    "devDependencies": {
+        "@types/archiver": "^2.0.1",
+        "@types/html-entities": "^1.2.16",
+        "@types/lodash": "^4.14.85",
+        "@types/mocha": "^2.2.44",
+        "@types/node": "^8.0.51",
+        "mocha": "^4.0.1",
+        "rxjs": "^5.5.2",
+        "typescript": "^2.6.1",
+        "vsce": "^1.32.0",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "archiver": "^2.1.0",
+        "html-entities": "^1.2.1",
+        "ignore": "^3.3.7",
+        "lodash": "^4.17.4"
+    },
+    "icon": "icon.png"
+}
