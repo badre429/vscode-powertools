@@ -1,8 +1,8 @@
 {
     "name": "bmgvscodepowertools",
-    "displayName": "Bmg VSCode Power Tools",
-    "description": "A set of tools  which improves developer productivity inside VSCode.",
-    "version": "1.0.0",
+    "displayName": "Bmg Power Tools",
+    "description": "A set of tools (archive /export folder , encode string , hash string , sort lines )",
+    "version": "1.0.1",
     "publisher": "badre429",
     "engines": {
         "vscode": "^1.18.0"
@@ -10,6 +10,14 @@
     "categories": [
         "Other"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/badre429/vscode-powertools/"
+    },
+    "homepage": "https://github.com/badre429/vscode-powertools/",
+    "bugs": {
+        "url": "https://github.com/badre429/vscode-powertools/issues"
+    },
     "activationEvents": [
         "onCommand:extension.bmg.archiver",
         "onCommand:extension.bmg.i18n",
@@ -20,8 +28,7 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            {
+        "commands": [{
                 "command": "extension.bmg.archiver",
                 "title": "Archive Workspace Folder"
             },
@@ -60,6 +67,7 @@
         "@types/lodash": "^4.14.85",
         "@types/mocha": "^2.2.44",
         "@types/node": "^8.0.51",
+        "lodash": "^4.17.4",
         "mocha": "^4.0.1",
         "rxjs": "^5.5.2",
         "typescript": "^2.6.1",
@@ -69,8 +77,7 @@
     "dependencies": {
         "archiver": "^2.1.0",
         "html-entities": "^1.2.1",
-        "ignore": "^3.3.7",
-        "lodash": "^4.17.4"
+        "ignore": "^3.3.7"
     },
     "icon": "icon.png"
 }
