@@ -19,19 +19,23 @@
         "url": "https://github.com/badre429/vscode-powertools/issues"
     },
     "activationEvents": [
+        "onLanguage:html",
         "onCommand:extension.bmg.archiver",
         "onCommand:extension.bmg.i18n",
         "onCommand:extension.bmg.sort",
         "onCommand:extension.bmg.hash",
         "onCommand:extension.bmg.encode",
-        "onCommand:extension.bmg.decode"
+        "onCommand:extension.bmg.decode",
+        "onCommand:extension.bmg.solution"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            {
+        "commands": [{
                 "command": "extension.bmg.archiver",
                 "title": "Archive Workspace Folder"
+            }, {
+                "command": "extension.bmg.solution",
+                "title": "Load / Reload bmg solution"
             },
             {
                 "command": "extension.bmg.hash",
@@ -53,7 +57,24 @@
                 "command": "extension.bmg.sort",
                 "title": "Sort Lines"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "BMG Power tools Settings",
+            "properties": {
+                "bmg-ngx-translate.lookup.regex": {
+                    "type": "array",
+                    "default": [
+                        "translate=\"([A-Za-z0-9_.]+)\"",
+                        "{{\\s*'([A-Za-z0-9_.]+)'\\s*|\\s*translate\\s*}}",
+                        "{{\\s*\"([A-Za-z0-9_.]+)\"\\s*|\\s*translate\\s*}}",
+                        "L\\('([A-Za-z0-9_.]+)'\\)",
+                        "translate\\('([A-Za-z0-9_.]+)'\\)"
+                    ],
+                    "description": "Regular expressions used to locate translation string/keys within documents.",
+                    "required": true
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
