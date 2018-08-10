@@ -2,10 +2,10 @@
     "name": "bmgvscodepowertools",
     "displayName": "Bmg Power Tools",
     "description": "A set of tools (archive /export folder , encode string , hash string , sort lines )",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "badre429",
     "engines": {
-        "vscode": "^1.18.0"
+        "vscode": "^1.25.0"
     },
     "categories": [
         "Other"
@@ -28,7 +28,8 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "extension.bmg.archiver",
                 "title": "Archive Workspace Folder"
             },
@@ -62,22 +63,22 @@
         "build": "vsce package --out dist/bmgpowertools.vsix"
     },
     "devDependencies": {
-        "@types/archiver": "^2.0.1",
+        "@types/archiver": "^2.1.2",
         "@types/html-entities": "^1.2.16",
-        "@types/lodash": "^4.14.85",
-        "@types/mocha": "^2.2.44",
-        "@types/node": "^8.0.51",
-        "lodash": "^4.17.4",
-        "mocha": "^4.0.1",
-        "rxjs": "^5.5.2",
-        "typescript": "^2.6.1",
-        "vsce": "^1.32.0",
-        "vscode": "^1.1.6"
+        "@types/lodash": "^4.14.116",
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^10.5.7",
+        "lodash": "^4.17.10",
+        "mocha": "^5.2.0",
+        "rxjs": "^6.2.2",
+        "typescript": "^3.0.1",
+        "vsce": "^1.46.0",
+        "vscode": "^1.1.18"
     },
     "dependencies": {
-        "archiver": "^2.1.0",
+        "archiver": "^2.1.1",
         "html-entities": "^1.2.1",
-        "ignore": "^3.3.7"
+        "ignore": "^4.0.5"
     },
     "icon": "icon.png"
 }
