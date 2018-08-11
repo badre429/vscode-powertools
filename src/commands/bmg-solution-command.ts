@@ -2,14 +2,91 @@ import { BmgCommand } from './bmg-command';
 import * as vscode from 'vscode';
 import { ConfigLoader } from '../utils/solution-loader';
 import { BMGConfig, BMGSolution } from '../consts';
-import * as fs from 'fs';
+
 import * as path from 'path';
-import { configure } from 'vscode/lib/testrunner';
+
 import { get } from 'lodash';
-import * as stringify from 'json-stable-stringify';
 
 import { ResourceDictionary } from '../utils/ngx-translate/resource-dictionary';
+import { saveJsonOjbect } from '../utils/files';
+import { IBmgProject } from '../utils/interfaces';
+export class BmgI18nAddKeyCommand extends BmgCommand {
+  constructor(private context: vscode.ExtensionContext) {
+    super(context);
+    this.paramsLoader.push({
+      key: 'Project',
+      command: this,
+      value: null,
+      load: this.LoadFunctionOfSelect(
+        'Project',
+        BMGSolution.projects.map(v => v.key)
+      )
+    });
 
+    this.paramsLoader.push({
+      key: 'Key',
+      command: this,
+      value: null,
+      load: this.LoadFunctionOfValue('Key')
+    });
+    BMGSolution.i18nLanguages.forEach(lang => {
+      this.paramsLoader.push({
+        key: lang,
+        command: this,
+        value: null,
+        load: this.LoadFunctionOfValue(lang)
+      });
+    });
+  }
+  Run() {
+    Object.keys(this.params).forEach(key => {
+      if (key != null && this.params[key] == null) {
+        return;
+      }
+    });
+    var project = BMGSolution.projects.find(
+      v => v.key == this.params['Project']
+    );
+    var key = this.params['Key'];
+
+    if (project != null) {
+      this.addI18KeyToProject(project, key);
+      this.addI18KeyToProject(
+        BMGSolution,
+        this.params['Project'] + '.' + key,
+        true
+      );
+      BMGSolution.i18nKeys.push(this.params['Project'] + '.' + key);
+    } else {
+      this.addI18KeyToProject(BMGSolution, key);
+      BMGSolution.i18nKeys.push(key);
+    }
+    resetI18nAutocomplete();
+  }
+
+  private addI18KeyToProject(
+    project: Partial<IBmgProject>,
+    key: any,
+    ignoreSave = false
+  ) {
+    var sol = BMGSolution;
+    sol.i18nLanguages.forEach(lang => {
+      if (project.i18n == null) {
+        project.i18n = {};
+      }
+      if (project.i18n[lang] == null) {
+        project.i18n[lang] = {};
+      }
+      project.i18n[lang][key] = this.params[lang];
+      if (project.i18nPath[lang] != null && !ignoreSave) {
+        saveJsonOjbect(
+          path.join(project.rootPath, project.i18nPath[lang]),
+          project.i18n[lang]
+        );
+      }
+    });
+  }
+}
 export class BmgSolutionCommand extends BmgCommand {
   constructor(private context: vscode.ExtensionContext) {
     super(context, 'extension.bmg.solution');
@@ -18,30 +95,34 @@ export class BmgSolutionCommand extends BmgCommand {
       key: 'cmd',
       command: this,
       value: null,
-      load: this.LoadFunctionOfSelect('cmd', ['Reload', 'SaveI18n'])
+      load: this.LoadFunctionOfSelect('cmd', [
+        'Reload BMG Solution',
+        'Save I18n Output',
+        'Add I18n Key'
+      ])
     });
   }
   Run() {
     var encoding = this.params['cmd'];
-
+    if (vscode.workspace.rootPath == null) {
+      vscode.window.showInformationMessage(
+        'You have to open a folder to run this command'
+      );
+      return;
+    }
     //  hashText = crypto.createHash(algorithm).update(selectedText).digest(encoding);
     switch (encoding) {
-      case 'Reload':
+      case 'Add I18n Key':
         {
-          if (vscode.workspace.rootPath != null) {
-            BmgSolutionCommand.LoadBmgSolution();
-          } else
-            vscode.window.showInformationMessage(
-              'You have to open a folder to run this command'
-            );
+          var cmd = new BmgI18nAddKeyCommand(this.context);
+          cmd.GetNextParam();
         }
         break;
-      case 'SaveI18n':
-        {
-          if (BMGSolution.rootPath != null) {
-            BmgSolutionCommand.saveI18n();
-          } else vscode.window.showInformationMessage('No solution is loaded');
-        }
+      case 'Reload BMG Solution':
+        BmgSolutionCommand.LoadBmgSolution();
+        break;
+      case 'Save I18n Output':
+        BmgSolutionCommand.saveI18n();
         break;
     }
   }
@@ -52,17 +133,7 @@ export class BmgSolutionCommand extends BmgCommand {
     var ze = Object.assign(BMGSolution, Config);
     console.log(BMGSolution);
 
-    let resourceDictionary: vscode.CompletionItem[] = [];
-    Config.i18nKeys.forEach(function(key) {
-      var x = {
-        label: `ngx-translate: ${key}`,
-        detail: get(Config.i18n[Config.i18nLanguages[0]], key, key), // resources[key],
-        insertText: key,
-        kind: vscode.CompletionItemKind.Text
-      };
-      resourceDictionary.push(x);
-    });
-    ResourceDictionary.Instance.setResources(resourceDictionary);
+    resetI18nAutocomplete();
   }
   static saveI18n() {
     var s = BMGSolution;
@@ -72,18 +143,21 @@ export class BmgSolutionCommand extends BmgCommand {
       dists.forEach(distI18n => {
         var ur = path.join(s.rootPath, distI18n);
 
-        fs.writeFileSync(
-          ur,
-          stringify(i18n, {
-            space: '  ',
-            cmp: (a, b) => {
-              if (a != null && b != null) {
-                return a.key.toLowerCase() > b.key.toLowerCase() ? 1 : -1;
-              } else return a.key > b.key ? 1 : -1;
-            }
-          })
-        );
+        saveJsonOjbect(ur, i18n);
       });
     });
   }
+}
+function resetI18nAutocomplete() {
+  let resourceDictionary: vscode.CompletionItem[] = [];
+  BMGSolution.i18nKeys.forEach(function(key) {
+    var x = {
+      label: `ngx-translate: ${key}`,
+      detail: get(BMGSolution.i18n[BMGSolution.i18nLanguages[0]], key, key),
+      insertText: key,
+      kind: vscode.CompletionItemKind.Text
+    };
+    resourceDictionary.push(x);
+  });
+  ResourceDictionary.Instance.setResources(resourceDictionary);
 }

@@ -1,8 +1,8 @@
 {
     "name": "bmgvscodepowertools",
     "displayName": "Bmg Power Tools",
-    "description": "A set of tools (archive /export folder , encode string , hash string , sort lines )",
-    "version": "1.0.2",
+    "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , ngx-translate , i18n )",
+    "version": "1.1.0",
     "publisher": "badre429",
     "engines": {
         "vscode": "^1.25.0"
@@ -30,8 +30,7 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            {
+        "commands": [{
                 "command": "extension.bmg.archiver",
                 "title": "Archive Workspace Folder"
             },
