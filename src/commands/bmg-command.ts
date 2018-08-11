@@ -17,11 +17,13 @@ export class BmgCommand implements IBmgCommand {
     }
   }
   public config: IBmgConfig;
-  constructor(context: vscode.ExtensionContext, commandName: string) {
-    this.Disposable = vscode.commands.registerCommand(commandName, () =>
-      this.GetNextParam()
-    );
-    context.subscriptions.push(this.Disposable);
+  constructor(context: vscode.ExtensionContext, commandName?: string) {
+    if (commandName != null) {
+      this.Disposable = vscode.commands.registerCommand(commandName, () =>
+        this.GetNextParam()
+      );
+      context.subscriptions.push(this.Disposable);
+    }
   }
 
   public LoadFunctionOfValue(

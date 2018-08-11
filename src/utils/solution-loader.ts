@@ -27,14 +27,15 @@ export class ConfigLoader {
     var local_path = path.join(this.rootPath, 'bmg.solution.json');
     if (fs.existsSync(local_path)) {
       var json_string = fs.readFileSync(local_path).toString();
-      const config = <IBmgConfig>JSON.parse(json_string);
-      var allprojs = config.projects || [];
+      const config = <IBmgSolution>JSON.parse(json_string);
+      var allprojs = config.projectPaths || [];
       var ret = <IBmgSolution>(<any>config);
       ret.projects = [];
       ret.i18nKeys = [];
+      ret.rootPath = this.rootPath;
       ret.i18nLanguages = [];
       ret.i18n = {};
-      this.loadI18n(ret, this.rootPath);
+      this.loadI18n(ret);
       allprojs.forEach(projPath => {
         try {
           var projectsUrl = path.join(this.rootPath, projPath);
@@ -42,25 +43,32 @@ export class ConfigLoader {
           var projDir = path.dirname(projectsUrl);
 
           var proj = <IBmgProject>JSON.parse(projjson_string);
+          proj.rootPath = projDir;
           proj.i18nLanguages = [];
           proj.i18n = {};
           if (proj.i18nPath != null) {
-            this.loadI18n(proj, projDir);
+            this.loadI18n(proj);
           }
 
           ret.projects.push(proj);
-          if (proj.i18nLanguages.length > 0) {
-            LoadKeys(proj.i18n[proj.i18nLanguages[0]], ret.i18nKeys, proj.key);
-            if (ret.i18n[proj.i18nLanguages[0]] == null) {
-              ret.i18n[proj.i18nLanguages[0]] = {};
-            }
-            ret.i18n[proj.i18nLanguages[0]][proj.key] =
-              proj.i18n[proj.i18nLanguages[0]];
-          }
           ret.i18nLanguages = uniq([
             ...ret.i18nLanguages,
             ...proj.i18nLanguages
           ]);
+          if (proj.i18nLanguages.length > 0) {
+            for (let index = 0; index < ret.i18nLanguages.length; index++) {
+              LoadKeys(
+                proj.i18n[proj.i18nLanguages[index]],
+                ret.i18nKeys,
+                proj.key
+              );
+              if (ret.i18n[proj.i18nLanguages[index]] == null) {
+                ret.i18n[proj.i18nLanguages[index]] = {};
+              }
+              ret.i18n[proj.i18nLanguages[index]][proj.key] =
+                proj.i18n[proj.i18nLanguages[index]];
+            }
+          }
         } catch (error) {}
       });
       return ret;
@@ -68,23 +76,29 @@ export class ConfigLoader {
     return {};
   }
 
-  private loadI18n(
-    proj: { i18nPath: string; i18n: any; i18nLanguages: string[] },
-    projDir: string
-  ) {
-    if (typeof proj.i18nPath == 'string') {
-      var i18n = fs.readFileSync(path.join(projDir, proj.i18nPath)).toString();
-      proj.i18n = { en: JSON.parse(i18n) };
-      proj.i18nLanguages = ['en'];
-    } else if (typeof proj.i18nPath == 'object') {
-      Object.keys(proj.i18nPath).forEach(key => {
-        proj.i18nLanguages.push(key);
-        proj.i18n = {};
+  private loadI18n(proj: {
+    i18nPath: string;
+    i18n: any;
+    i18nLanguages: string[];
+    rootPath?: string;
+  }) {
+    try {
+      if (typeof proj.i18nPath == 'string') {
         var i18n = fs
-          .readFileSync(path.join(projDir, proj.i18nPath[key]))
+          .readFileSync(path.join(proj.rootPath, proj.i18nPath))
           .toString();
-        proj.i18n[key] = JSON.parse(i18n);
-      });
-    }
+        proj.i18n = { en: JSON.parse(i18n) };
+        proj.i18nLanguages = ['en'];
+      } else if (typeof proj.i18nPath == 'object') {
+        proj.i18n = {};
+        Object.keys(proj.i18nPath).forEach(key => {
+          proj.i18nLanguages.push(key);
+          var i18n = fs
+            .readFileSync(path.join(proj.rootPath, proj.i18nPath[key]))
+            .toString();
+          proj.i18n[key] = JSON.parse(i18n);
+        });
+      }
+    } catch (error) {}
   }
 }

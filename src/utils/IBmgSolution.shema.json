@@ -1,0 +1,119 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IBmgPermission": {
+            "properties": {
+                "childs": {
+                    "items": {
+                        "$ref": "#/definitions/IBmgPermission"
+                    },
+                    "type": "array"
+                },
+                "description": {},
+                "display": {},
+                "key": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IBmgProject": {
+            "properties": {
+                "clientPath": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "i18n": {},
+                "i18nLanguages": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "i18nPath": {},
+                "i18nPathOut": {},
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "permissions": {
+                    "items": {
+                        "$ref": "#/definitions/IBmgPermission"
+                    },
+                    "type": "array"
+                },
+                "rootPath": {
+                    "type": "string"
+                },
+                "serverKey": {
+                    "type": "string"
+                },
+                "serverPath": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "clientPath": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "i18n": {},
+        "i18nKeys": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "i18nLanguages": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "i18nPath": {},
+        "i18nPathOut": {},
+        "key": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "permissions": {
+            "items": {
+                "$ref": "#/definitions/IBmgPermission"
+            },
+            "type": "array"
+        },
+        "projectPaths": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "projects": {
+            "items": {
+                "$ref": "#/definitions/IBmgProject"
+            },
+            "type": "array"
+        },
+        "rootPath": {
+            "type": "string"
+        },
+        "serverKey": {
+            "type": "string"
+        },
+        "serverPath": {
+            "type": "string"
+        }
+    },
+    "type": "object"
+}

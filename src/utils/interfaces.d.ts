@@ -3,32 +3,31 @@ export interface IBmgConfig {
   description?: string;
   projects: string[];
 }
+export interface IBmgPermission {
+  key: string;
+  display: string | any;
+  description?: string | any;
+  childs?: IBmgPermission[];
+}
 export interface IBmgProject {
   name: string;
   description?: string;
-  i18nPath: string;
+  i18nPath: string | any;
+  i18nPathOut: string | any;
   i18nLanguages: string[];
   i18n: any;
   key: string;
+  serverKey: string;
   clientPath?: string;
   serverPath?: string;
-  permissions: [
-    {
-      key: string;
-      display: string;
-      description?: string;
-    }
-  ];
+  rootPath?: string;
+  permissions: IBmgPermission[];
 }
 
-export interface IBmgSolution {
-  name: string;
-  description?: string;
-  projects: IBmgProject[];
-  i18nPath: string;
-  i18n: any;
-  i18nLanguages: string[];
+export interface IBmgSolution extends IBmgProject {
   i18nKeys?: string[];
+  projects: IBmgProject[];
+  projectPaths: string[];
 }
 export interface IBmgCommand {
   params: {};

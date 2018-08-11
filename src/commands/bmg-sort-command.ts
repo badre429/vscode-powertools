@@ -17,7 +17,7 @@ function reverseCompare(a, b) {
   return a < b ? 1 : -1;
 }
 
-function caseInsensitiveCompare(a, b) {
+export function caseInsensitiveCompare(a, b) {
   return a.localeCompare(b, { sensitivity: 'base' });
 }
 

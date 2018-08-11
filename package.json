@@ -30,12 +30,14 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "extension.bmg.archiver",
                 "title": "Archive Workspace Folder"
-            }, {
+            },
+            {
                 "command": "extension.bmg.solution",
-                "title": "Load / Reload bmg solution"
+                "title": "BMG solution"
             },
             {
                 "command": "extension.bmg.hash",
@@ -97,9 +99,12 @@
         "vscode": "^1.1.18"
     },
     "dependencies": {
+        "@types/json-stable-stringify": "^1.0.32",
         "archiver": "^2.1.1",
         "html-entities": "^1.2.1",
-        "ignore": "^4.0.5"
+        "ignore": "^4.0.5",
+        "json-stable-stringify": "^1.0.1",
+        "voca": "^1.4.0"
     },
     "icon": "icon.png"
 }
