@@ -19,7 +19,7 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
       value: null,
       load: this.LoadFunctionOfSelect(
         'Project',
-        BMGSolution.projects.map(v => v.key)
+        BMGSolution.projects.map((v) => v.key)
       )
     });
 
@@ -29,7 +29,7 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
       value: null,
       load: this.LoadFunctionOfValue('Key')
     });
-    BMGSolution.i18nLanguages.forEach(lang => {
+    BMGSolution.i18nLanguages.forEach((lang) => {
       this.paramsLoader.push({
         key: lang,
         command: this,
@@ -39,13 +39,13 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
     });
   }
   Run() {
-    Object.keys(this.params).forEach(key => {
+    Object.keys(this.params).forEach((key) => {
       if (key != null && this.params[key] == null) {
         return;
       }
     });
     var project = BMGSolution.projects.find(
-      v => v.key == this.params['Project']
+      (v) => v.key == this.params['Project']
     );
     var key = this.params['Key'];
 
@@ -70,7 +70,7 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
     ignoreSave = false
   ) {
     var sol = BMGSolution;
-    sol.i18nLanguages.forEach(lang => {
+    sol.i18nLanguages.forEach((lang) => {
       if (project.i18n == null) {
         project.i18n = {};
       }
@@ -131,16 +131,16 @@ export class BmgSolutionCommand extends BmgCommand {
     var z = Object.assign(BMGConfig, cl);
     var Config = cl.Load();
     var ze = Object.assign(BMGSolution, Config);
-    console.log(BMGSolution);
+    // console.log(BMGSolution);
 
     resetI18nAutocomplete();
   }
   static saveI18n() {
     var s = BMGSolution;
-    s.i18nLanguages.forEach(lang => {
+    s.i18nLanguages.forEach((lang) => {
       const i18n = s.i18n[lang];
       var dists = s.i18nPathOut[lang];
-      dists.forEach(distI18n => {
+      dists.forEach((distI18n) => {
         var ur = path.join(s.rootPath, distI18n);
 
         saveJsonOjbect(ur, i18n);

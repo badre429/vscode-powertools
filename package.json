@@ -1,109 +1,117 @@
 {
-    "name": "bmgvscodepowertools",
-    "displayName": "Bmg Power Tools",
-    "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , ngx-translate , i18n )",
-    "version": "1.1.1",
-    "publisher": "badre429",
-    "engines": {
-        "vscode": "^1.25.0"
-    },
-    "categories": [
-        "Other"
+  "name": "bmgvscodepowertools",
+  "displayName": "Bmg Power Tools",
+  "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , ngx-translate , i18n )",
+  "version": "1.2.0",
+  "publisher": "badre429",
+  "engines": {
+    "vscode": "^1.36.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/badre429/vscode-powertools/"
+  },
+  "homepage": "https://github.com/badre429/vscode-powertools/",
+  "bugs": {
+    "url": "https://github.com/badre429/vscode-powertools/issues"
+  },
+  "activationEvents": [
+    "onLanguage:html",
+    "onCommand:extension.bmg.archiver",
+    "onCommand:extension.bmg.i18n",
+    "onCommand:extension.bmg.sort",
+    "onCommand:extension.bmg.hash",
+    "onCommand:extension.bmg.encode",
+    "onCommand:extension.bmg.decode",
+    "onCommand:extension.bmg.solution"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.bmg.archiver",
+        "title": "Archive Workspace Folder"
+      },
+      {
+        "command": "extension.bmg.solution",
+        "title": "BMG solution"
+      },
+      {
+        "command": "extension.bmg.hash",
+        "title": "Hash string"
+      },
+      {
+        "command": "extension.bmg.encode",
+        "title": "Encode string"
+      },
+      {
+        "command": "extension.bmg.decode",
+        "title": "Decode string"
+      },
+      {
+        "command": "extension.bmg.i18n",
+        "title": "I18n"
+      },
+      {
+        "command": "extension.bmg.sort",
+        "title": "Sort Lines"
+      }
     ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/badre429/vscode-powertools/"
-    },
-    "homepage": "https://github.com/badre429/vscode-powertools/",
-    "bugs": {
-        "url": "https://github.com/badre429/vscode-powertools/issues"
-    },
-    "activationEvents": [
-        "onLanguage:html",
-        "onCommand:extension.bmg.archiver",
-        "onCommand:extension.bmg.i18n",
-        "onCommand:extension.bmg.sort",
-        "onCommand:extension.bmg.hash",
-        "onCommand:extension.bmg.encode",
-        "onCommand:extension.bmg.decode",
-        "onCommand:extension.bmg.solution"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-                "command": "extension.bmg.archiver",
-                "title": "Archive Workspace Folder"
-            },
-            {
-                "command": "extension.bmg.solution",
-                "title": "BMG solution"
-            },
-            {
-                "command": "extension.bmg.hash",
-                "title": "Hash string"
-            },
-            {
-                "command": "extension.bmg.encode",
-                "title": "Encode string"
-            },
-            {
-                "command": "extension.bmg.decode",
-                "title": "Decode string"
-            },
-            {
-                "command": "extension.bmg.i18n",
-                "title": "I18n"
-            },
-            {
-                "command": "extension.bmg.sort",
-                "title": "Sort Lines"
-            }
-        ],
-        "configuration": {
-            "title": "BMG Power tools Settings",
-            "properties": {
-                "bmg-ngx-translate.lookup.regex": {
-                    "type": "array",
-                    "default": [
-                        "translate=\"([A-Za-z0-9_.]+)\"",
-                        "{{\\s*'([A-Za-z0-9_.]+)'\\s*|\\s*translate\\s*}}",
-                        "{{\\s*\"([A-Za-z0-9_.]+)\"\\s*|\\s*translate\\s*}}",
-                        "L\\('([A-Za-z0-9_.]+)'\\)",
-                        "translate\\('([A-Za-z0-9_.]+)'\\)"
-                    ],
-                    "description": "Regular expressions used to locate translation string/keys within documents.",
-                    "required": true
-                }
-            }
+    "configuration": {
+      "title": "BMG Power tools Settings",
+      "properties": {
+        "bmg-ngx-translate.lookup.regex": {
+          "type": "array",
+          "default": [
+            "translate=\"([A-Za-z0-9_.]+)\"",
+            "{{\\s*'([A-Za-z0-9_.]+)'\\s*|\\s*translate\\s*}}",
+            "{{\\s*\"([A-Za-z0-9_.]+)\"\\s*|\\s*translate\\s*}}",
+            "L\\('([A-Za-z0-9_.]+)'\\)",
+            "translate\\('([A-Za-z0-9_.]+)'\\)"
+          ],
+          "description": "Regular expressions used to locate translation string/keys within documents.",
+          "required": true
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test",
-        "build": "vsce package --out dist/bmgpowertools.vsix"
-    },
-    "devDependencies": {
-        "@types/archiver": "^2.1.2",
-        "@types/html-entities": "^1.2.16",
-        "@types/lodash": "^4.14.116",
-        "@types/mocha": "^5.2.5",
-        "@types/node": "^10.5.7",
-        "lodash": "^4.17.10",
-        "mocha": "^5.2.0",
-        "rxjs": "^6.2.2",
-        "typescript": "^3.0.1",
-        "vsce": "^1.46.0",
-        "vscode": "^1.1.18"
-    },
-    "dependencies": {
-        "@types/json-stable-stringify": "^1.0.32",
-        "archiver": "^2.1.1",
-        "html-entities": "^1.2.1",
-        "ignore": "^4.0.5",
-        "json-stable-stringify": "^1.0.1",
-        "voca": "^1.4.0"
-    },
-    "icon": "icon.png"
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "test-compile": "tsc -p ./",
+    "lint": "tslint -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test",
+    "build": "vsce package --out dist/bmgpowertools.vsix"
+  },
+  "devDependencies": {
+    "@types/archiver": "^3.0.0",
+    "@types/html-entities": "^1.2.16",
+    "@types/json-stable-stringify": "^1.0.32",
+    "@types/lodash": "^4.14.136",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/vscode": "^1.36.0",
+    "archiver": "^3.0.3",
+    "html-entities": "^1.2.1",
+    "ignore": "^5.1.2",
+    "json-stable-stringify": "^1.0.1",
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.0",
+    "rxjs": "^6.5.2",
+    "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "vsce": "^1.66.0",
+    "vscode": "^1.1.35",
+    "webpack-cli": "^3.3.6",
+    "webpack": "^4.37.0"
+  },
+  "dependencies": {},
+  "icon": "icon.png"
 }
