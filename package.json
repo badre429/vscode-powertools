@@ -28,7 +28,7 @@
     "onCommand:extension.bmg.decode",
     "onCommand:extension.bmg.solution"
   ],
-  "main": "./out/src/extension",
+	"main": "./dist/extension",
   "contributes": {
     "commands": [
       {
