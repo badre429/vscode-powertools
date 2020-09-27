@@ -2,6 +2,7 @@
 {
     "version": "0.1.0",
     "configurations": [
+        
         {
             "name": "Launch Extension",
             "type": "extensionHost",
@@ -11,7 +12,7 @@
             "stopOnEntry": false,
             "sourceMaps": true,
             "outFiles": [ "${workspaceRoot}/out/src/**/*.js" ],
-            "preLaunchTask": "npm"
+            "preLaunchTask": "run-webpack"
         },
         {
             "name": "Launch Tests",
@@ -22,7 +23,7 @@
             "stopOnEntry": false,
             "sourceMaps": true,
             "outFiles": [ "${workspaceRoot}/out/test/**/*.js" ],
-            "preLaunchTask": "npm"
+            "preLaunchTask": "run-webpack"
         }
     ]
 }
