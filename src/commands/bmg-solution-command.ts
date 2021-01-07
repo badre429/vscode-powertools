@@ -10,6 +10,7 @@ import { get } from 'lodash-es';
 import { ResourceDictionary } from '../utils/ngx-translate/resource-dictionary';
 import { saveJsonOjbect } from '../utils/files';
 import { IBmgProject } from '../utils/interfaces';
+import { BmgInsertTextFromListCommand } from './bmg-insert-text-from-list-command';
 export class BmgI18nAddKeyCommand extends BmgCommand {
   constructor(private context: vscode.ExtensionContext) {
     super(context);
@@ -87,6 +88,7 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
     });
   }
 }
+
 export class BmgSolutionCommand extends BmgCommand {
   constructor(private context: vscode.ExtensionContext) {
     super(context, 'extension.bmg.solution');
@@ -99,6 +101,8 @@ export class BmgSolutionCommand extends BmgCommand {
         'Reload BMG Solution',
         'Save I18n Output',
         'Add I18n Key',
+        'Permissions',
+        'List I18n key',
       ]),
     });
   }
@@ -116,6 +120,25 @@ export class BmgSolutionCommand extends BmgCommand {
         {
           var cmd = new BmgI18nAddKeyCommand(this.context);
           cmd.GetNextParam();
+        }
+        break;
+      case 'Permissions':
+        {
+          var cmdd = new BmgInsertTextFromListCommand(
+            this.context,
+            'Permission',
+            BMGSolution.permissionKeys
+          );
+          cmdd.GetNextParam();
+        }
+        break;
+      case 'List I18n key':
+        {
+          new BmgInsertTextFromListCommand(
+            this.context,
+            'I18n key',
+            BMGSolution.i18nKeys
+          ).GetNextParam();
         }
         break;
       case 'Reload BMG Solution':

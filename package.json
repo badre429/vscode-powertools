@@ -1,11 +1,11 @@
 {
   "name": "bmgvscodepowertools",
   "displayName": "Bmg Power Tools",
-  "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , abp transalte keys , i18n )",
+  "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , abp.io transalte keys ,abp.io list permission keys , i18n )",
   "version": "1.4.0",
   "publisher": "badre429",
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.50.0"
   },
   "categories": [
     "Other"
@@ -98,7 +98,7 @@
     "@types/lodash": "^4.14.167",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.20",
-    "@types/vscode": "^1.52.0",
+    "@types/vscode": "^1.50.0",
     "html-entities": "^2.0.2",
     "axios": "^0.21.1",
     "node-fetch": "^2.6.1",

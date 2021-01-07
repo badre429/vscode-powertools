@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as http from 'http';
 import * as https from 'https';
+
 import axios from 'axios';
 
 import { uniq } from 'lodash-es';
@@ -37,6 +38,7 @@ export class ConfigLoader {
       var ret = <IBmgSolution>(<any>config);
       ret.projects = [];
       ret.i18nKeys = [];
+      ret.permissionKeys = [];
       ret.rootPath = this.rootPath;
       ret.i18nLanguages = [];
       ret.i18n = {};
@@ -80,39 +82,65 @@ export class ConfigLoader {
       });
       // load abp.io configuration
       if (config.abp?.url != null) {
-        try {
-          var ru = await axios.get(config.abp?.url, {
-            httpsAgent: new https.Agent({
-              rejectUnauthorized: false,
-            }),
-          });
-          if (ru.data?.localization?.values) {
-            var keys = Object.keys(ru.data?.localization?.values);
-            var lang = 'en';
-            if ((ret.i18nLanguages.length = 0)) {
-              ret.i18nLanguages.push(lang);
-            } else {
-              lang = ret.i18nLanguages[0];
-            }
-            if (ret.i18n[lang] == null) {
-              ret.i18n[lang] = {};
-            }
-
-            keys.forEach((res) => {
-              Object.keys(ru.data?.localization?.values[res]).forEach((k) => {
-                var key = res + '::' + k;
-                ret.i18nKeys.push(key);
-                ret.i18n[lang][key] = ru.data?.localization?.values[res][k];
-              });
-            });
-          }
-        } catch (error) {
-          console.log(error);
-        }
+        await this.loadAbpIOData(config.abp?.url, ret);
       }
       return ret;
     }
     return {};
+  }
+
+  private async loadAbpIOData(url: string, ret: IBmgSolution) {
+    try {
+      var ru = await axios.get(url, {
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+        }),
+      });
+      var abdata = ru.data;
+      if (abdata) {
+        try {
+          var lpath = path.join(this.rootPath, 'tmp', 'tmp.abp.json');
+          fs.writeFileSync(lpath, JSON.stringify(abdata, null, 4));
+        } catch (error) {}
+      }
+      this.loadAbpioData(abdata, ret);
+    } catch (error) {
+      var lpath = path.join(this.rootPath, 'tmp', 'tmp.abp.json');
+
+      try {
+        if (fs.existsSync(lpath)) {
+          var abdata = JSON.parse(fs.readFileSync(lpath).toString());
+
+          this.loadAbpioData(abdata, ret);
+        }
+      } catch (error) {}
+    }
+  }
+
+  private loadAbpioData(abdata: any, ret: IBmgSolution) {
+    if (abdata.auth?.policies) {
+      ret.permissionKeys.push(...Object.keys(abdata.auth?.policies));
+    }
+    if (abdata.localization?.values) {
+      var keys = Object.keys(abdata.localization?.values);
+      var lang = 'en';
+      if ((ret.i18nLanguages.length = 0)) {
+        ret.i18nLanguages.push(lang);
+      } else {
+        lang = ret.i18nLanguages[0];
+      }
+      if (ret.i18n[lang] == null) {
+        ret.i18n[lang] = {};
+      }
+
+      keys.forEach((res) => {
+        Object.keys(abdata.localization?.values[res]).forEach((k) => {
+          var key = res + '::' + k;
+          ret.i18nKeys.push(key);
+          ret.i18n[lang][key] = abdata.localization?.values[res][k];
+        });
+      });
+    }
   }
 
   private loadI18n(proj: {

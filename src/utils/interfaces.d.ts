@@ -30,6 +30,7 @@ export interface AbpConfig {
 export interface IBmgSolution extends IBmgProject {
   abp: AbpConfig;
   i18nKeys?: string[];
+  permissionKeys?: string[];
   projects: IBmgProject[];
   projectPaths: string[];
 }
