@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import { IParamsLoader } from '../utils/interfaces';
 import { BmgCommandHelper } from './bmg-command-helper';
-import { Html5Entities } from 'html-entities';
+import { encode, decode } from 'html-entities';
 
 export class BmgEncodeCommand extends BmgCommand {
   constructor(private context: vscode.ExtensionContext) {
@@ -21,8 +21,8 @@ export class BmgEncodeCommand extends BmgCommand {
         'HTML Non ASCII',
         'latin1',
         'hex',
-        'base64'
-      ])
+        'base64',
+      ]),
     });
   }
 
@@ -34,19 +34,15 @@ export class BmgEncodeCommand extends BmgCommand {
     //  hashText = crypto.createHash(algorithm).update(selectedText).digest(encoding);
     switch (encoding) {
       case 'HTML':
-        var entities = new Html5Entities();
-        hashText = entities.encode(selectedText);
+        hashText = encode(selectedText);
         break;
       case 'HTML Non UTF':
-        var entities = new Html5Entities();
-        hashText = entities.encode(selectedText);
+        hashText = encode(selectedText);
         break;
       case 'HTML Non ASCII':
-        var entities = new Html5Entities();
-        hashText = entities.encode(selectedText);
+        hashText = encode(selectedText);
         break;
       case 'URL':
-        var entities = new Html5Entities();
         hashText = encodeURI(selectedText);
         break;
     }

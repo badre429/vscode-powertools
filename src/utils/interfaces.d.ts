@@ -24,7 +24,11 @@ export interface IBmgProject {
   permissions: IBmgPermission[];
 }
 
+export interface AbpConfig {
+  url?: string;
+}
 export interface IBmgSolution extends IBmgProject {
+  abp: AbpConfig;
   i18nKeys?: string[];
   projects: IBmgProject[];
   projectPaths: string[];

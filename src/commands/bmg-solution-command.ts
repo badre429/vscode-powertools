@@ -5,7 +5,7 @@ import { BMGConfig, BMGSolution } from '../consts';
 
 import * as path from 'path';
 
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 
 import { ResourceDictionary } from '../utils/ngx-translate/resource-dictionary';
 import { saveJsonOjbect } from '../utils/files';
@@ -20,21 +20,21 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
       load: this.LoadFunctionOfSelect(
         'Project',
         BMGSolution.projects.map((v) => v.key)
-      )
+      ),
     });
 
     this.paramsLoader.push({
       key: 'Key',
       command: this,
       value: null,
-      load: this.LoadFunctionOfValue('Key')
+      load: this.LoadFunctionOfValue('Key'),
     });
     BMGSolution.i18nLanguages.forEach((lang) => {
       this.paramsLoader.push({
         key: lang,
         command: this,
         value: null,
-        load: this.LoadFunctionOfValue(lang)
+        load: this.LoadFunctionOfValue(lang),
       });
     });
   }
@@ -98,8 +98,8 @@ export class BmgSolutionCommand extends BmgCommand {
       load: this.LoadFunctionOfSelect('cmd', [
         'Reload BMG Solution',
         'Save I18n Output',
-        'Add I18n Key'
-      ])
+        'Add I18n Key',
+      ]),
     });
   }
   Run() {
@@ -126,10 +126,10 @@ export class BmgSolutionCommand extends BmgCommand {
         break;
     }
   }
-  static LoadBmgSolution() {
+  static async LoadBmgSolution() {
     var cl = new ConfigLoader(vscode.workspace.rootPath);
     var z = Object.assign(BMGConfig, cl);
-    var Config = cl.Load();
+    var Config = await cl.Load();
     var ze = Object.assign(BMGSolution, Config);
     // console.log(BMGSolution);
 
@@ -150,12 +150,12 @@ export class BmgSolutionCommand extends BmgCommand {
 }
 function resetI18nAutocomplete() {
   let resourceDictionary: vscode.CompletionItem[] = [];
-  BMGSolution.i18nKeys.forEach(function(key) {
+  BMGSolution.i18nKeys.forEach(function (key) {
     var x = {
-      label: `ngx-translate: ${key}`,
+      label: `i18n:${key}`,
       detail: get(BMGSolution.i18n[BMGSolution.i18nLanguages[0]], key, key),
       insertText: key,
-      kind: vscode.CompletionItemKind.Text
+      kind: vscode.CompletionItemKind.Text,
     };
     resourceDictionary.push(x);
   });

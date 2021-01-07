@@ -1,14 +1,18 @@
 import { IBmgConfig, IBmgSolution, IBmgProject } from './interfaces';
 import * as fs from 'fs';
 import * as path from 'path';
-import { uniq } from 'lodash';
+import * as http from 'http';
+import * as https from 'https';
+import axios from 'axios';
+
+import { uniq } from 'lodash-es';
 export function LoadKeys(i18n, keys: string[], subName?) {
   if (subName == null) {
     subName = '';
   } else {
     subName = subName + '.';
   }
-  Object.keys(i18n).forEach(key => {
+  Object.keys(i18n).forEach((key) => {
     var val = i18n[key];
     if (val != null) {
       if (typeof val == 'string') {
@@ -23,20 +27,23 @@ export function LoadKeys(i18n, keys: string[], subName?) {
 }
 export class ConfigLoader {
   constructor(private rootPath: string) {}
-  public Load(): Partial<IBmgSolution> {
+  public async Load(): Promise<Partial<IBmgSolution>> {
     var local_path = path.join(this.rootPath, 'bmg.solution.json');
     if (fs.existsSync(local_path)) {
       var json_string = fs.readFileSync(local_path).toString();
       const config = <IBmgSolution>JSON.parse(json_string);
       var allprojs = config.projectPaths || [];
+
       var ret = <IBmgSolution>(<any>config);
       ret.projects = [];
       ret.i18nKeys = [];
       ret.rootPath = this.rootPath;
       ret.i18nLanguages = [];
       ret.i18n = {};
+
       this.loadI18n(ret);
-      allprojs.forEach(projPath => {
+
+      allprojs.forEach((projPath) => {
         try {
           var projectsUrl = path.join(this.rootPath, projPath);
           var projjson_string = fs.readFileSync(projectsUrl).toString();
@@ -53,7 +60,7 @@ export class ConfigLoader {
           ret.projects.push(proj);
           ret.i18nLanguages = uniq([
             ...ret.i18nLanguages,
-            ...proj.i18nLanguages
+            ...proj.i18nLanguages,
           ]);
           if (proj.i18nLanguages.length > 0) {
             for (let index = 0; index < ret.i18nLanguages.length; index++) {
@@ -71,6 +78,38 @@ export class ConfigLoader {
           }
         } catch (error) {}
       });
+      // load abp.io configuration
+      if (config.abp?.url != null) {
+        try {
+          var ru = await axios.get(config.abp?.url, {
+            httpsAgent: new https.Agent({
+              rejectUnauthorized: false,
+            }),
+          });
+          if (ru.data?.localization?.values) {
+            var keys = Object.keys(ru.data?.localization?.values);
+            var lang = 'en';
+            if ((ret.i18nLanguages.length = 0)) {
+              ret.i18nLanguages.push(lang);
+            } else {
+              lang = ret.i18nLanguages[0];
+            }
+            if (ret.i18n[lang] == null) {
+              ret.i18n[lang] = {};
+            }
+
+            keys.forEach((res) => {
+              Object.keys(ru.data?.localization?.values[res]).forEach((k) => {
+                var key = res + '::' + k;
+                ret.i18nKeys.push(key);
+                ret.i18n[lang][key] = ru.data?.localization?.values[res][k];
+              });
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
       return ret;
     }
     return {};
@@ -91,7 +130,7 @@ export class ConfigLoader {
         proj.i18nLanguages = ['en'];
       } else if (typeof proj.i18nPath == 'object') {
         proj.i18n = {};
-        Object.keys(proj.i18nPath).forEach(key => {
+        Object.keys(proj.i18nPath).forEach((key) => {
           proj.i18nLanguages.push(key);
           var i18n = fs
             .readFileSync(path.join(proj.rootPath, proj.i18nPath[key]))
