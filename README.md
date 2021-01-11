@@ -9,7 +9,7 @@ A set of tools which improves developer productivity.
 run command **Archve workspace folder**
 
 archive current folder based on the `.gitignore` file if you wan't to cancel a git rule for archiver you add to `.gitinclude` file
-
+![archive-workspace](https://s2.gifyu.com/images/archive-workspace.gif)
 ### Sort lines :
 run command **sortlines**
 
@@ -45,3 +45,5 @@ to insert i18n key text inside you project
 
 #### Permission 
 to insert permission text inside you project 
+
+![abp-ng](https://s2.gifyu.com/images/abp.gif)
