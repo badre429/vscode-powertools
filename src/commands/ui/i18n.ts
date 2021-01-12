@@ -37,162 +37,171 @@ export function getI18nHtmlForWebview(
     )
   );
 
-  return ` 
+  return `
     <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>MAP CLIENT</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link
-  rel="stylesheet"
-  type="text/css"
-  media="screen"
-  href="${stylesVuetifyResetUri}"
-/>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MAP CLIENT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="${stylesVuetifyResetUri}"
+        />
 
-<link
-  rel="stylesheet"
-  type="text/css"
-  media="screen"
-  href="${stylesVscodeResetUri}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  media="screen"
-  href="${stylesMaterialDesignUri}"
-/>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="${stylesVscodeResetUri}"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="${stylesMaterialDesignUri}"
+        />
 
-<script src="${scriptVueUri}"></script>
-<script src="${scriptVuetifyUri}"></script>
-<style>
-  table {
-    position: relative;
-  }
-  th {
-    position: sticky;
-    background-color: rgb(226, 226, 226);
-    z-index: 5;
-    top: 0; /* Don't forget this, required for the stickiness */
-  }
-  .v-data-table__wrapper {
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-  }
-  .v-text-field {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-  }
-  .v-input__slot {
-    margin-bottom: 0 !important;
-  }
-  .v-text-field__details {
-    display: none !important;
-  }
-  .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
-  .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
-  .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
-    height: 26px !important;
-    padding-left: 4px !important;
-    padding-right: 4px !important;
-  }
-</style>
-</head>
+        <script src="${scriptVueUri}"></script>
+        <script src="${scriptVuetifyUri}"></script>
+        <style>
+          table {
+            position: relative;
+          }
+          th {
+            position: sticky;
+            background-color: rgb(226, 226, 226);
+            z-index: 5;
+            top: 0; /* Don't forget this, required for the stickiness */
+          }
+          .v-data-table__wrapper {
+            overflow-x: visible !important;
+            overflow-y: visible !important;
+          }
+          .v-text-field {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+          }
+          .v-input__slot {
+            margin-bottom: 0 !important;
+          }
+          .v-text-field__details {
+            display: none !important;
+          }
+          .v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+          .v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+          .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+            height: 26px !important;
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+          }
+        </style>
+      </head>
 
-<body>
-<div id="main-toolbar">
-<v-app>
-<v-main>
-  <v-container dark>  
-      <v-snackbar v-model="cancelMessage" color="success">
-        Download Canceled
-        <v-btn dark @click="cancelMessage = false"> Close </v-btn>
-      </v-snackbar>
-      <v-snackbar v-model="successMessage" color="success">
-        Download Stared
-        <v-btn dark @click="successMessage = false"> Close </v-btn>
-      </v-snackbar>
+      <body>
+        <div id="main-toolbar">
+          <v-app>
+            <v-main>
+              <v-container dark>
+                <v-snackbar v-model="cancelMessage" color="success">
+                  Download Canceled
+                  <v-btn dark @click="cancelMessage = false"> Close </v-btn>
+                </v-snackbar>
+                <v-snackbar v-model="successMessage" color="success">
+                  Download Stared
+                  <v-btn dark @click="successMessage = false"> Close </v-btn>
+                </v-snackbar>
 
-      <div style="display: flex">
-        <v-select
-          style="margin: 4px"
-          style="flex-grow: 1"
-          v-model="i18nConfig"
-          item-text="name"
-          item-value="name"
-          v-on:change="i18nConfigChange"
-          :items="i18nConfigs"
-          label="Select I18n Config"
-        >
-        </v-select>
-        <div v-if="i18nConfig">
-          <v-btn
-            style="margin: 4px"
-            v-if="i18nConfigChange"
-            v-on:click="save"
-            class="push-c control"
-          >
-            <v-icon>save</v-icon>
-            Save
-          </v-btn>
+                <div style="display: flex">
+                  <v-select
+                    style="margin: 4px"
+                    style="flex-grow: 1"
+                    v-model="i18nConfig"
+                    item-text="name"
+                    item-value="name"
+                    v-on:change="i18nConfigChange"
+                    :items="i18nConfigs"
+                    label="Select I18n Config"
+                  >
+                  </v-select>
+                  <div v-if="i18nConfig">
+                    <v-btn
+                      style="margin: 4px"
+                      v-if="i18nConfigChange"
+                      v-on:click="save"
+                      class="push-c control"
+                    >
+                      <v-icon>save</v-icon>
+                      Save
+                    </v-btn>
 
-          <v-btn
-            style="margin: 4px"
-            v-on:click="addLanguage"
-            class="push-c control"
-          >
-            <v-icon>save</v-icon>
-            Add language
-          </v-btn>
+                    <v-btn
+                      style="margin: 4px"
+                      v-on:click="addLanguage"
+                      class="push-c control"
+                    >
+                      <v-icon>save</v-icon>
+                      Add language
+                    </v-btn>
+                  </div>
+                </div>
+
+                <v-simple-table>
+                  <template v-slot:default>
+                    <thead>
+                      <tr>
+                        <th style="display:flex;flex-direction:row;">
+                          Keys:
+                          <v-text-field
+                            v-model="searchTerm"
+                            v-on:change="search"
+                          >
+                          </v-text-field>
+                          <v-btn v-on:click="addKey( )" icon color="blue">
+                            <v-icon> add</v-icon>
+                          </v-btn>
+                        </th>
+                        <th v-for="key in languages" class="text-left">
+                          {{key}}
+                        </th>
+                        <th style="max-width: 48px;margin: 0;padding: 0;">
+                          <v-btn v-on:click="save" icon color="blue">
+                            <v-icon>save</v-icon>
+                          </v-btn>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="key in searchKeys">
+                        <td>{{key}}</td>
+                        <td v-for="lang in languages">
+                          <v-text-field
+                            autofocus
+                            v-model="i18nConfigDic[lang][key]"
+                          >
+                          </v-text-field>
+                        </td>
+                        <td style="max-width: 48px">
+                          <v-btn v-on:click="deleteKey(key)" icon color="red">
+                            <v-icon> delete</v-icon>
+                          </v-btn>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+              </v-container>
+            </v-main>
+          </v-app>
         </div>
-      </div>
 
-      <v-simple-table>
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th>
-                Keys:
-                <v-btn v-on:click="addKey( )" icon color="blue">
-                  <v-icon> add</v-icon>
-                </v-btn>
-              </th>
-              <th v-for="key in languages" class="text-left">{{key}}</th>
-              <th style="max-width: 48px;margin: 0;padding: 0;">
-                <v-btn v-on:click="save" icon color="blue">
-                  <v-icon>save</v-icon>
-                </v-btn>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="key in keys">
-              <td>{{key}}</td>
-              <td v-for="lang in languages">
-                <v-text-field autofocus v-model="i18nConfigDic[lang][key]">
-                </v-text-field>
-              </td>
-              <td style="max-width: 48px">
-                <v-btn v-on:click="deleteKey(key)" icon color="red">
-                  <v-icon> delete</v-icon>
-                </v-btn>
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-      </v-container>
-    </v-main>
-  </v-app>
-</div>
-
-<script   src="${scriptUri}"></script>
-</body>
-</html>
-
-    `;
+        <script src="${scriptUri}"></script>
+      </body>
+    </html>
+  `;
 }
 
 export function I18nUI(context: vscode.ExtensionContext) {
@@ -222,16 +231,50 @@ export function I18nUI(context: vscode.ExtensionContext) {
         switch (message.command) {
           case 'getList':
             var rootPath = vscode.workspace.rootPath;
-            var files = ListDirectoryFiles(rootPath).allIncludedFiles;
+
+            var files = ListDirectoryFiles(rootPath).allIncludedFiles.filter(
+              (k) =>
+                k.endsWith('.json') &&
+                !k.endsWith('package.json') &&
+                !k.endsWith('angular.json') &&
+                !k.endsWith('tsconfig.json') &&
+                !k.endsWith('angular.json') &&
+                !k.endsWith('webpack.json')
+            );
             var ret = [];
             var NamePathDic = {};
             var NameResourceDic = {};
             (panel as any).NamePathDic = NamePathDic;
             (panel as any).NameResourceDic = NameResourceDic;
-            var engFiles = files.filter((k) => k.endsWith('en.json'));
+            var allExtension = [
+              'fr.json',
+              'en.json',
+              'ar.json',
+              'ru.json',
+              'es.json',
+            ];
+
+            // compute all localization files groups end with any extension allExtension
+            var allFls = {};
+            files.forEach((k) => {
+              for (let index = 0; index < allExtension.length; index++) {
+                if (k.endsWith(allExtension[index])) {
+                  var fn = k.substring(0, k.length - 7);
+                  if (allFls[fn] == null) allFls[fn] = [];
+                  return true;
+                }
+              }
+              return false;
+            });
+
+            var engFiles = Object.keys(allFls);
             engFiles.forEach((fl) => {
-              var di = path.dirname(fl);
+              var di = fl;
               var prefix = null;
+              if (!di.endsWith('/')) {
+                prefix = path.basename(di);
+                di = path.dirname(di);
+              }
               var name = path.basename(di);
               var df = di;
               var i = 0;
@@ -240,7 +283,7 @@ export function I18nUI(context: vscode.ExtensionContext) {
                 name = path.basename(df) + '.' + name;
               }
               if (NamePathDic[name] == null) {
-                var resource = { key: name, files: [] };
+                var resource = { key: name, files: [], prefix };
                 NamePathDic[name] = path.join(rootPath, di);
                 NameResourceDic[name] = resource;
                 files
@@ -276,7 +319,9 @@ export function I18nUI(context: vscode.ExtensionContext) {
             (panel as any).NameResourceDic[message.data.key] = message.data;
             var directoryPath = (panel as any).NamePathDic[message.data.key];
             content.files.forEach((item) => {
-              var lp = item.key + '.json';
+              var lp =
+                // (content.prefix ? content.prefix : '') +
+                item.key + '.json';
               lp = path.join(directoryPath, lp);
               fs.writeFileSync(lp, item.content);
             });
