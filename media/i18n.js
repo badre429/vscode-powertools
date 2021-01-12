@@ -100,22 +100,17 @@ function saveAppState() {
         saveAppState();
       },
       addLanguage: async function (e) {
-        var lng = vscode
-          ? prompt('new language')
-          : await vscode.window.showInputBox({ placeHolder: paramName });
+        var lng = await getPromiseFromVscode('prompt', { name: 'language' });
         if (lng != null && lng.length && this.languages.indexOf(lng) < 0) {
           this.languages.push(lng);
           this.i18nConfigDic[lng] = {};
         }
       },
       editKeys: async function (oldKey) {
-        //   var newKey = prompt('edit language', oldKey);
-        var newKey = vscode
-          ? prompt('new key')
-          : await vscode.window.showInputBox({
-              placeHolder: paramName,
-              value: oldKey,
-            });
+        var newKey = await getPromiseFromVscode('prompt', {
+          name: 'key',
+          value: oldKey,
+        });
         if (newKey != null && newKey != '' && this.keys.indexOf(newKey) < 0) {
           this.keys.push(newKey);
           this.i18nConfigDic[newKey] = {};
@@ -141,9 +136,6 @@ function saveAppState() {
         saveAppState();
       },
       addKey: async function () {
-        // var key = vscode
-        //   ? prompt('key')
-        //   : await vscode.window.showInputBox({ placeHolder: paramName });
         var key = await getPromiseFromVscode('prompt', { name: 'key' });
         if (key != null && key != '' && this.keys.indexOf(key) < 0) {
           this.keys.push(key);
