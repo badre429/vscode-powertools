@@ -1,7 +1,6 @@
 // npm install --save-dev ignore;
 // npm install --save-dev archiver;
 
-import { FilesIgnoreHelper } from '../utils/files-helpers';
 import * as path from 'path';
 // import * as fs from 'fs';
 // import * as archiver from 'archiver';
@@ -11,6 +10,7 @@ import { BmgCommandHelper } from './bmg-command-helper';
 import * as vscode from 'vscode';
 import { BmgCommand } from './bmg-command';
 import { execSync } from 'child_process';
+import { ListDirectoryFiles } from '../utils/files';
 // const { exec, execSync } = require('child_process');
 
 export class BmgArchiverCommand extends BmgCommand {
@@ -28,27 +28,8 @@ export class BmgArchiverCommand extends BmgCommand {
   }
   public static CreateArchive(directoryPath = null) {
     var startTime = new Date();
-    directoryPath = directoryPath == null ? __dirname : directoryPath;
-    var allIncludedFiles = [];
-    try {
-      var stdout = [
-        ...execSync('git ls-files', {
-          cwd: directoryPath,
-        })
-          .toString()
-          .split('\n'),
-        ...execSync('git ls-files -o  --exclude-standard', {
-          cwd: directoryPath,
-        })
-          .toString()
-          .split('\n'),
-      ];
-      allIncludedFiles = stdout;
-    } catch (error) {}
-    if (allIncludedFiles.length == 0) {
-      var ih = new FilesIgnoreHelper(directoryPath);
-      allIncludedFiles = ih.GetGitFilteredFiles();
-    }
+    var allIncludedFiles;
+    ({ allIncludedFiles, directoryPath } = ListDirectoryFiles(directoryPath));
     // the *entire* stdout and stderr (buffered)
     vscode.window.showInformationMessage(
       'start compression of ' + allIncludedFiles.length + ' files'
