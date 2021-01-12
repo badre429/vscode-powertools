@@ -47,3 +47,10 @@ to insert i18n key text inside you project
 to insert permission text inside you project 
 
 ![abp-ng](https://s2.gifyu.com/images/abp.gif)
+
+## BMG UI 
+
+# BMG UI I18N 
+this feature used to rapidly create and update string inside i18n.json files in abp.io structure 
+
+![ui18n](https://s2.gifyu.com/images/ui18n.gif)
