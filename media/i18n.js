@@ -197,6 +197,7 @@ function saveAppState() {
         var kys = {};
         this.languages = [];
         this.i18nConfigData.files.forEach((element) => {
+          this.languages.push(element.key);
           try {
             var contentJson = JSON.parse(element.content);
             if (
@@ -210,7 +211,6 @@ function saveAppState() {
               this.currentType = 1;
               this.i18nConfigDic[element.key] = contentJson;
             }
-            this.languages.push(element.key);
             Object.keys(this.i18nConfigDic[element.key]).forEach(
               (k) => (kys[k] = true)
             );
