@@ -4,3 +4,4 @@ dist
 package-lock.json
 tmp
 debug.log
+/media/external

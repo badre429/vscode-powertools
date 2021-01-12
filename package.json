@@ -26,7 +26,8 @@
     "onCommand:extension.bmg.hash",
     "onCommand:extension.bmg.encode",
     "onCommand:extension.bmg.decode",
-    "onCommand:extension.bmg.solution"
+    "onCommand:extension.bmg.solution",
+    "onCommand:extension.bmg.ui"
   ],
   "main": "./dist/extension",
   "contributes": {
@@ -38,6 +39,10 @@
       {
         "command": "extension.bmg.solution",
         "title": "BMG solution"
+      },
+      {
+        "command": "extension.bmg.ui",
+        "title": "BMG ui"
       },
       {
         "command": "extension.bmg.hash",
@@ -69,8 +74,8 @@
             "translate=\"([A-Za-z0-9_.:]+)\"",
             "{{\\s*'([A-Za-z0-9_.:]+)'\\s*|\\s*translate\\s*}}",
             "{{\\s*\"([A-Za-z0-9_.:]+)\"\\s*|\\s*translate\\s*}}",
-              "{{\\s*'([A-Za-z0-9_.:]+)'\\s*|\\s*translate\\s*}}",
-              "{{\\s*\"([A-Za-z0-9_.:]+)\"\\s*|\\s*translate\\s*}}",
+            "{{\\s*'([A-Za-z0-9_.:]+)'\\s*|\\s*translate\\s*}}",
+            "{{\\s*\"([A-Za-z0-9_.:]+)\"\\s*|\\s*translate\\s*}}",
             "L\\('([A-Za-z0-9_.:]+)'\\)",
             "translate\\('([A-Za-z0-9_.:]+)'\\)",
             "instant\\('([A-Za-z0-9_.:]+)'\\)"
@@ -115,7 +120,10 @@
     "vscode": "^1.1.37",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
-    "zip-lib": "^0.7.2"
+    "zip-lib": "^0.7.2",
+    "material-design-icons-iconfont": "^6.1.0",
+    "vue": "^2.6.12",
+    "vuetify": "^2.4.2"
   },
   "dependencies": {},
   "icon": "icon.png"

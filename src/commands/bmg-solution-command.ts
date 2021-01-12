@@ -171,7 +171,7 @@ export class BmgSolutionCommand extends BmgCommand {
     });
   }
 }
-function resetI18nAutocomplete() {
+export function resetI18nAutocomplete() {
   let resourceDictionary: vscode.CompletionItem[] = [];
   BMGSolution.i18nKeys.forEach(function (key) {
     var x = {
