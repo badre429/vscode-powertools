@@ -39,6 +39,7 @@ export class ConfigLoader {
       ret.projects = [];
       ret.i18nKeys = [];
       ret.permissionKeys = [];
+      ret.settingKeys = [];
       ret.rootPath = this.rootPath;
       ret.i18nLanguages = [];
       ret.i18n = {};
@@ -120,6 +121,9 @@ export class ConfigLoader {
   private loadAbpioData(abdata: any, ret: IBmgSolution) {
     if (abdata.auth?.policies) {
       ret.permissionKeys.push(...Object.keys(abdata.auth?.policies));
+    }
+    if (abdata.setting?.values) {
+      ret.settingKeys.push(...Object.keys(abdata.setting?.values));
     }
     if (abdata.localization?.values) {
       var keys = Object.keys(abdata.localization?.values);

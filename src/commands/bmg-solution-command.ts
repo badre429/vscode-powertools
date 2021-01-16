@@ -102,6 +102,7 @@ export class BmgSolutionCommand extends BmgCommand {
         'Save I18n Output',
         'Add I18n Key',
         'Permissions',
+        'Client Settings',
         'List I18n key',
       ]),
     });
@@ -128,6 +129,16 @@ export class BmgSolutionCommand extends BmgCommand {
             this.context,
             'Permission',
             BMGSolution.permissionKeys
+          );
+          cmdd.GetNextParam();
+        }
+        break;
+      case 'Client Settings':
+        {
+          var cmdd = new BmgInsertTextFromListCommand(
+            this.context,
+            'Client Settings',
+            BMGSolution.settingKeys
           );
           cmdd.GetNextParam();
         }

@@ -31,6 +31,7 @@ export interface IBmgSolution extends IBmgProject {
   abp: AbpConfig;
   i18nKeys?: string[];
   permissionKeys?: string[];
+  settingKeys?: string[];
   projects: IBmgProject[];
   projectPaths: string[];
 }
