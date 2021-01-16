@@ -98,7 +98,7 @@ export class BmgSolutionCommand extends BmgCommand {
       command: this,
       value: null,
       load: this.LoadFunctionOfSelect('cmd', [
-        'Reload BMG Solution',
+        'Reload Solution',
         'Save I18n Output',
         'Add I18n Key',
         'Permissions',
@@ -141,7 +141,7 @@ export class BmgSolutionCommand extends BmgCommand {
           ).GetNextParam();
         }
         break;
-      case 'Reload BMG Solution':
+      case 'Reload Solution':
         BmgSolutionCommand.LoadBmgSolution();
         break;
       case 'Save I18n Output':
@@ -171,6 +171,7 @@ export class BmgSolutionCommand extends BmgCommand {
     });
   }
 }
+
 export function resetI18nAutocomplete() {
   let resourceDictionary: vscode.CompletionItem[] = [];
   BMGSolution.i18nKeys.forEach(function (key) {

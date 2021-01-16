@@ -61,6 +61,10 @@
         "title": "I18n"
       },
       {
+        "command": "extension.bmg.solution",
+        "title": "ABP.IO"
+      },
+      {
         "command": "extension.bmg.sort",
         "title": "Sort Lines"
       }
