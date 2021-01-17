@@ -91,7 +91,7 @@ export class BmgI18nAddKeyCommand extends BmgCommand {
 
 export class BmgSolutionCommand extends BmgCommand {
   constructor(private context: vscode.ExtensionContext) {
-    super(context, 'extension.bmg.solution');
+    super(context, 'extension.bmg.solution', 'extension.bmg.abpio');
 
     this.paramsLoader.push({
       key: 'cmd',

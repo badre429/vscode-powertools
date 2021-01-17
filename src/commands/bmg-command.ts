@@ -17,9 +17,19 @@ export class BmgCommand implements IBmgCommand {
     }
   }
   public config: IBmgConfig;
-  constructor(context: vscode.ExtensionContext, commandName?: string) {
+  constructor(
+    context: vscode.ExtensionContext,
+    commandName?: string,
+    cloneComandName?: string
+  ) {
     if (commandName != null) {
       this.Disposable = vscode.commands.registerCommand(commandName, () =>
+        this.GetNextParam()
+      );
+      context.subscriptions.push(this.Disposable);
+    }
+    if (cloneComandName != null) {
+      this.Disposable = vscode.commands.registerCommand(cloneComandName, () =>
         this.GetNextParam()
       );
       context.subscriptions.push(this.Disposable);
@@ -30,7 +40,7 @@ export class BmgCommand implements IBmgCommand {
     paramName: string
   ): (IParamsLoader: IParamsLoader) => any {
     return (paramsLoader: IParamsLoader) => {
-      vscode.window.showInputBox({ placeHolder: paramName }).then(v => {
+      vscode.window.showInputBox({ placeHolder: paramName }).then((v) => {
         paramsLoader.command.params[paramName] = v;
         paramsLoader.command.GetNextParam();
       });
@@ -43,7 +53,7 @@ export class BmgCommand implements IBmgCommand {
     return (paramsLoader: IParamsLoader) => {
       vscode.window
         .showQuickPick(options, { placeHolder: paramName })
-        .then(v => {
+        .then((v) => {
           paramsLoader.command.params[paramName] = v;
           paramsLoader.command.GetNextParam();
         });

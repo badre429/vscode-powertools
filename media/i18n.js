@@ -29,20 +29,20 @@ window.addEventListener('message', (event) => {
 });
 
 function saveAppState() {
-  vscode.setState({
-    i18nConfigDic: vueApp.i18nConfigDic,
-    successMessage: vueApp.successMessage,
-    cancelMessage: vueApp.cancelMessage,
-    i18nConfig: vueApp.i18nConfig,
-    i18nConfigs: vueApp.i18nConfigs,
-    keys: vueApp.keys,
-    languages: vueApp.languages,
-    i18nConfigData: vueApp.i18nConfigData,
-    searchTerm: vueApp.searchTerm,
-    searchKeys: vueApp.searchKeys,
-    currentType: vueApp.currentType,
-    workingLangs: vueApp.workingLangs,
-  });
+  // vscode.setState({
+  //   i18nConfigDic: vueApp.i18nConfigDic,
+  //   successMessage: vueApp.successMessage,
+  //   cancelMessage: vueApp.cancelMessage,
+  //   i18nConfig: vueApp.i18nConfig,
+  //   i18nConfigs: vueApp.i18nConfigs,
+  //   keys: vueApp.keys,
+  //   languages: vueApp.languages,
+  //   i18nConfigData: vueApp.i18nConfigData,
+  //   searchTerm: vueApp.searchTerm,
+  //   searchKeys: vueApp.searchKeys,
+  //   currentType: vueApp.currentType,
+  //   workingLangs: vueApp.workingLangs,
+  // });
 }
 (function () {
   vueApp = new Vue({

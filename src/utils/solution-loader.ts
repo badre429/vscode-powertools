@@ -75,12 +75,33 @@ export class ConfigLoader {
               if (ret.i18n[proj.i18nLanguages[index]] == null) {
                 ret.i18n[proj.i18nLanguages[index]] = {};
               }
+              if (
+                ret.i18n[proj.i18nLanguages[index]]['PERMISSION_DISPLAY'] ==
+                null
+              ) {
+                ret.i18n[proj.i18nLanguages[index]]['PERMISSION_DISPLAY'] = {};
+              }
               ret.i18n[proj.i18nLanguages[index]][proj.key] =
                 proj.i18n[proj.i18nLanguages[index]];
+              if (
+                proj.i18n[proj.i18nLanguages[index]]['PERMISSION_DISPLAY'] !=
+                null
+              ) {
+                Object.assign(
+                  ret.i18n[proj.i18nLanguages[index]]['PERMISSION_DISPLAY'],
+                  proj.i18n[proj.i18nLanguages[index]]['PERMISSION_DISPLAY']
+                );
+              }
             }
           }
         } catch (error) {}
       });
+      try {
+        const x = ret.i18n[ret.i18nLanguages[0]];
+        if (x) {
+          ret.permissionKeys = Object.keys(x['PERMISSION_DISPLAY']);
+        }
+      } catch (error) {}
       // load abp.io configuration
       if (config.abp?.url != null) {
         await this.loadAbpIOData(config.abp?.url, ret);

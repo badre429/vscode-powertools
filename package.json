@@ -2,7 +2,7 @@
   "name": "bmgvscodepowertools",
   "displayName": "Bmg Power Tools",
   "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , abp.io transalte keys ,abp.io list permission keys , i18n )",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "publisher": "badre429",
   "engines": {
     "vscode": "^1.50.0"
@@ -27,6 +27,7 @@
     "onCommand:extension.bmg.encode",
     "onCommand:extension.bmg.decode",
     "onCommand:extension.bmg.solution",
+    "onCommand:extension.bmg.abpio",
     "onCommand:extension.bmg.ui"
   ],
   "main": "./dist/extension",
@@ -61,7 +62,7 @@
         "title": "I18n"
       },
       {
-        "command": "extension.bmg.solution",
+        "command": "extension.bmg.abpio",
         "title": "ABP.IO"
       },
       {
