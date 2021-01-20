@@ -1,0 +1,13 @@
+{
+  "snippet_value": {
+    "prefix": "snippet_value",
+    "description": "snipet json value",
+    "body": [
+      "\"${1:snippet}\": {\n",
+      "  \"prefix\": \"$1\",\n",
+      "  \"description\": \"$2\",\n",
+      "  \"body\": [$3]\n",
+      "}\n"
+    ]
+  }
+}

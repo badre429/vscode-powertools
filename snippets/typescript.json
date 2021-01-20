@@ -1,1 +1,26 @@
-{}
+{
+  "abpBaseAsyncComponent": {
+    "prefix": "abpBaseAsyncComponent",
+
+    "description": "base async component",
+
+    "body": [
+      "import { BaseAsyncComponent } from '@abpdz/ng.theme.shared';",
+      "import { HttpClient } from '@angular/common/http';",
+      "import { Component, Injector, OnInit } from '@angular/core';",
+      "",
+      "@Component({",
+      "  selector: 'app-${2:${TM_FILENAME_BASE/[\\.]component//}}',",
+      "  templateUrl: './${3:${TM_FILENAME_BASE}}.html',",
+      "  styleUrls: ['./${3:${TM_FILENAME_BASE}}.scss'],",
+      "})",
+      "export class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends BaseAsyncComponent implements OnInit {",
+      "  constructor(private httpClient: HttpClient, injector: Injector) {",
+      "    super(injector);",
+      "  }",
+      "",
+      "  ngOnInit(): void {}",
+      "}"
+    ]
+  }
+}
