@@ -19,8 +19,9 @@ export class BmgEncodeCommand extends BmgCommand {
         'URL',
         'HTML Non UTF',
         'HTML Non ASCII',
-        'latin1',
-        'hex',
+        'JSON Multiline code',
+        // 'latin1',
+        // 'hex',
         'base64',
       ]),
     });
@@ -44,6 +45,19 @@ export class BmgEncodeCommand extends BmgCommand {
         break;
       case 'URL':
         hashText = encodeURI(selectedText);
+        break;
+      case 'URL':
+        hashText = encodeURI(selectedText);
+        break;
+      case 'JSON Multiline code':
+        hashText = selectedText
+          .split('\n')
+          .map((e) => JSON.stringify(e + '\n'))
+          .join('+\n');
+
+        break;
+      default:
+        hashText = selectedText;
         break;
     }
     BmgCommandHelper.ReplaceEditorSelection(hashText);
