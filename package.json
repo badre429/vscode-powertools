@@ -30,7 +30,8 @@
     "onCommand:extension.bmg.decode",
     "onCommand:extension.bmg.solution",
     "onCommand:extension.bmg.abpio",
-    "onCommand:extension.bmg.ui"
+    "onCommand:extension.bmg.ui",
+    "onCommand:extension.bmg.insert-text"
   ],
   "main": "./dist/extension",
   "contributes": {
@@ -46,6 +47,10 @@
       {
         "command": "extension.bmg.ui",
         "title": "BMG ui"
+      },
+      {
+        "command": "extension.bmg.insert-text",
+        "title": "Insert text from"
       },
       {
         "command": "extension.bmg.hash",

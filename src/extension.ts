@@ -15,6 +15,7 @@ import { createHoverProvider } from './utils/ngx-translate/hoverProvider';
 import { createHighlightProvider } from './utils/ngx-translate/highlightProvider';
 import { BMGSolution } from './consts';
 import { BmgUiCommand } from './commands/bmg-ui-command';
+import { BmgInsertTextFromCommand } from './commands/bmg-insert-text-from';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -35,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
   var decodecmd = new BmgDecodeCommand(context);
   var loadsolution = new BmgSolutionCommand(context);
   var loadUI = new BmgUiCommand(context);
-
+  new BmgInsertTextFromCommand(context);
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
       'html',
