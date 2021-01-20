@@ -41,6 +41,23 @@ export class BmgDecodeCommand extends BmgCommand {
       case 'HTML Non ASCII':
         hashText = decode(selectedText);
         break;
+
+      case 'hex': {
+        let bufferObj = Buffer.from(selectedText, 'hex');
+        hashText = bufferObj.toString('utf8');
+      }
+
+      case 'latin1': {
+        let bufferObj = Buffer.from(selectedText, 'latin1');
+        hashText = bufferObj.toString('utf8');
+      }
+
+      case 'base64':
+        {
+          let bufferObj = Buffer.from(selectedText, 'base64');
+          hashText = bufferObj.toString('utf8');
+        }
+        break;
       case 'URL':
         hashText = decodeURI(selectedText);
         break;

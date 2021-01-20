@@ -20,8 +20,8 @@ export class BmgEncodeCommand extends BmgCommand {
         'HTML Non UTF',
         'HTML Non ASCII',
         'JSON Multiline code',
-        // 'latin1',
-        // 'hex',
+        'latin1',
+         'hex',
         'base64',
       ]),
     });
@@ -48,6 +48,24 @@ export class BmgEncodeCommand extends BmgCommand {
         break;
       case 'URL':
         hashText = encodeURI(selectedText);
+        break;
+      case 'base64':
+        {
+          let bufferObj = Buffer.from(selectedText, 'utf8');
+          hashText = bufferObj.toString('base64');
+        }
+        break;
+      case 'latin1':
+        {
+          let bufferObj = Buffer.from(selectedText, 'utf8');
+          hashText = bufferObj.toString('latin1');
+        }
+        break;
+      case 'hex':
+        {
+          let bufferObj = Buffer.from(selectedText, 'utf8');
+          hashText = bufferObj.toString('hex');
+        }
         break;
       case 'JSON Multiline code':
         hashText = selectedText
