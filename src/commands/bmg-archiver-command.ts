@@ -46,21 +46,20 @@ export class BmgArchiverCommand extends BmgCommand {
     // Adds a file from the file system
 
     allIncludedFiles.forEach((file) => {
-      var abs_file = path.join(directoryPath, file);
+      try {
+        var abs_file = path.join(directoryPath, file);
 
-      zip.addFile(abs_file, path.join(path.basename(directoryPath), file));
+        zip.addFile(abs_file, path.join(path.basename(directoryPath), file));
+      } catch (error) {}
     });
     // Adds a folder from the file system, putting its contents at the root of archive
 
     // Generate zip file.
     zip.archive(zippath).then(
       function () {
-        console.log('done');
         BmgCommandHelper.OpenInExplorer(zippath);
       },
-      function (err) {
-        console.log(err);
-      }
+      function (err) {}
     );
 
     // var output = fs.createWriteStream(zippath);
