@@ -1,0 +1,14 @@
+{
+  "ASP.NET Core - Creates a MVC/Api Action": {
+    "prefix": "ac_action",
+    "body": [
+      "[${1:HttpGet}(nameof($2))]",
+      "public async Task<IActionResult> ${2:ActionName}(${3:string} ${4:name})",
+      "{",
+      "\t$0",
+      "\treturn Ok;",
+      "}"
+    ],
+    "description": "ASP.NET Core - Creates a MVC/Api Action"
+  }
+}

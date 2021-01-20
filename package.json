@@ -8,7 +8,9 @@
     "vscode": "^1.50.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets",
+    "Visualization"
   ],
   "repository": {
     "type": "git",
@@ -89,7 +91,21 @@
           "required": true
         }
       }
-    }
+    },
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      },
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "webpack --mode production",
