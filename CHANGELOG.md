@@ -11,3 +11,16 @@
 
 - **feat(i18n-autocomplete)**: ngx-tranlate autocomplete inside html file
 - **feat(i18n-add-key)**: ngx-tranlate add key to i18n project
+## [1.4.0]
+- **feat(abp-io)**: list i18n keys from abp.io project
+
+- **feat(abp-io)**: list permission keys from abp.io project
+
+- **feat(abp-io)**: list client settings keys from abp.io project
+## [1.5.0]
+
+- **feat(i18n-ui)**: UI management tools for i18n json files 
+
+## [1.6.0]
+- **feat(encode-json-text)**: encode text to sum of multiline string (useful for snnipts creation)
+- **feat(inset-text-from)**: insert text from material icon list

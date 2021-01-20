@@ -48,6 +48,10 @@ to insert permission text inside you project
 
 ![abp-ng](https://s2.gifyu.com/images/abp.gif)
 
+## Inset text from  
+
+### insert text from material icon list
+
 ## BMG UI 
 
 # BMG UI I18N 
