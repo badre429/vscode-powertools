@@ -23,5 +23,12 @@
     "body": [
       "\"${1:Default}\": \"DataSource={2:app.db};${3:Cache=Shared};\",$0"
     ]
+  },
+  "csSqlserver": {
+    "prefix": "csSqlserver",
+    "description": "",
+    "body": [
+      "\"${1:Default}\": \"Server=${2:localhost};Database=${3:DBNAME};User ID=${4:USERNAME};Password=${5:PASSWORD};${6:Trusted_Connection=True;MultipleActiveResultSets=true;}\",$0"
+    ]
   }
 }
