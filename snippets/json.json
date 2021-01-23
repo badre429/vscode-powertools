@@ -30,5 +30,12 @@
     "body": [
       "\"${1:Default}\": \"Server=${2:localhost};Database=${3:DBNAME};User ID=${4:USERNAME};Password=${5:PASSWORD};${6:Trusted_Connection=True;MultipleActiveResultSets=true;}\",$0"
     ]
+  },
+  "csOracle": {
+    "prefix": "csOracle",
+    "description": "",
+    "body": [
+      "\"${1:Default}\": \"Data Source=${2:localhost}/${3:ORCL};User ID=${4:USERNAME};password=${5:PASSWORD}\",$0"
+    ]
   }
 }
