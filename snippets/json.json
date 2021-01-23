@@ -16,5 +16,12 @@
     "body": [
       "\"${1:Default}\": \"Server=${2:localhost};Port=${3:5432};Database=${4:DBNAME};Userid=${5:USERNAME};Password=${6:PASSWORD};${7:sslmode=Disable;Trust Server Certificate=true;}\",$0"
     ]
+  },
+  "csSqlite": {
+    "prefix": "csSqlite",
+    "description": "",
+    "body": [
+      "\"${1:Default}\": \"DataSource={2:app.db};${3:Cache=Shared};\",$0"
+    ]
   }
 }
