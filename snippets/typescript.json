@@ -22,5 +22,45 @@
       "  ngOnInit(): void {}",
       "}"
     ]
+  },
+  "abpLazyModule": {
+    "prefix": "abpLazyModule",
+    "description": "",
+    "body": [
+      "import { ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';",
+      "import { CommonModule } from '@angular/common';",
+      "",
+      "import { ${1:${TM_FILENAME_BASE/(.*module)/${1:/pascalcase}/g}}RoutingModule } from './audit-routing.module';",
+      "import { CoreModule, LazyModuleFactory } from '@abpdz/ng.core';",
+      "import { ThemeSharedModule } from '@abpdz/ng.theme.shared';",
+      "import { NgxValidateCoreModule } from '@ngx-validate/core';",
+      "import { MatTableModule } from '@angular/material/table';",
+      "import { MatPaginatorModule } from '@angular/material/paginator';",
+      "",
+      "@NgModule({",
+      "  declarations: [],",
+      "  imports: [",
+      "    CommonModule,",
+      "    $1RoutingModule,",
+      "    CommonModule,",
+      "    ThemeSharedModule,",
+      "    MatTableModule,",
+      "    MatPaginatorModule,",
+      "    CoreModule.forLazy(),",
+      "    NgxValidateCoreModule,",
+      "  ],",
+      "})",
+      "export class $1Module {",
+      "  static forChild(): ModuleWithProviders<$1Module> {",
+      "    return {",
+      "      ngModule: $1Module,",
+      "      providers: [],",
+      "    };",
+      "  }",
+      "  static forLazy(): NgModuleFactory<$1Module> {",
+      "    return new LazyModuleFactory($1Module.forChild());",
+      "  }",
+      "}"
+    ]
   }
 }
