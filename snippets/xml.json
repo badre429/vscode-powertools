@@ -1,0 +1,12 @@
+{
+  "abpI18nResource": {
+    "prefix": "abpI18nResource",
+    "description": "",
+    "body": [
+      "<ItemGroup>",
+      "  <EmbeddedResource Include=\"${1:AbpDzUI}\\**\\*.json\" />",
+      "  <Content Remove=\"$1\\**\\*.json\" />",
+      "</ItemGroup>$0"
+    ]
+  }
+}
