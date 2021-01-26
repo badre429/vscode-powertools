@@ -1,3 +1,14 @@
 {
-    
+  "abpLoadingDiv": {
+    "prefix": "abpLoadingDiv",
+    "description": "",
+    "body": [
+      "<div style=\"position: relative\">",
+      "  <div class=\"ngdz-loading-shade\" *ngIf=\"${1:loading$ | async}\">",
+      "    <mat-spinner></mat-spinner>",
+      "  </div>",
+      "  $0",
+      "</div>"
+    ]
+  }
 }
