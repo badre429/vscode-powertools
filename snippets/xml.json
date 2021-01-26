@@ -24,5 +24,18 @@
       "  <PackageReference Include=\"Volo.Abp.FeatureManagement.Application\" Version=\"$1\" />",
       "</ItemGroup>"
     ]
+  },
+  "abpSelfConainedTrimmedExeConfiguration": {
+    "prefix": "abpSelfConainedTrimmedExeConfiguration",
+    "description": "",
+    "body": [
+      "<RuntimeIdentifier>${1:win-x64}</RuntimeIdentifier>",
+      "<PublishReadyToRun>true</PublishReadyToRun>",
+      "<PublishSingleFile>true</PublishSingleFile>",
+      "<PublishTrimmed>true</PublishTrimmed>",
+      "<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>",
+      "<TrimMode>link</TrimMode>",
+      "<SuppressTrimAnalysisWarnings>true</SuppressTrimAnalysisWarnings> "
+    ]
   }
 }
