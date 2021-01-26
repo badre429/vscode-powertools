@@ -54,10 +54,15 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*", "@types/estree@^0.0.45":
+"@types/estree@*":
   version "0.0.45"
   resolved "http://localhost:4444/@types%2festree/-/estree-0.0.45.tgz#e9387572998e5ecdac221950dab3e8c3b16af884"
   integrity sha512-jnqIUKDUqJbDIUxm0Uj7bnlMnRm1T/eZ9N+AVMqhPgzrba2GhGG5o/jCTwmdPK709nEZsGoMzXEDUjcXHa3W0g==
+
+"@types/estree@^0.0.46":
+  version "0.0.46"
+  resolved "http://localhost:4444/@types%2festree/-/estree-0.0.46.tgz#0fb6bfbbeabd7a30880504993369c4bf1deab1fe"
+  integrity sha512-laIjwTQaD+5DukBZaygQ79K1Z0jb1bPEMRrkXSLjtCcZm+abyp5YbrqpSLzD42FwWW6gK/aS4NYpJ804nG2brg==
 
 "@types/html-entities@^1.2.16":
   version "1.2.16"
@@ -974,10 +979,10 @@ he@1.2.0:
   resolved "http://localhost:4444/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-html-entities@^2.0.3:
-  version "2.0.3"
-  resolved "http://127.0.0.1:4444/html-entities/-/html-entities-2.0.3.tgz#f6ab5fae8900b2348be9fb2166ed3cc6045205d9"
-  integrity sha512-gmHgMT443G7C1ygLCPYBHX9tYeb2RqshhGlKS6b5LC9CnDaPzd1UdvK+Sj5lgoBfJSaBUQE3aIFLSgq4+NB2uw==
+html-entities@^2.0.6:
+  version "2.0.6"
+  resolved "http://localhost:4444/html-entities/-/html-entities-2.0.6.tgz#e773b9acfad65718dd194e599f1b11cf5704b925"
+  integrity sha512-SiH2gwQT78XunjDZfXAa6KrE91kzZUGbef3PL9JmWS+DhL48/+FC+1sNh++/titGzIs8NvH+xuNam/FwV7mJsQ==
 
 htmlparser2@^3.9.1:
   version "3.10.1"
@@ -2113,13 +2118,13 @@ webpack-sources@^2.1.1:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
 
-webpack@^5.16.0:
-  version "5.16.0"
-  resolved "http://127.0.0.1:4444/webpack/-/webpack-5.16.0.tgz#796e093c2d92c229f013aefefde82b50c0572570"
-  integrity sha512-QOkctcjYfEGxcYg4AzPJafyAQ7ANc266/URkX881uFA7b2k31E0Dmpy1ExfppHOTp1kHDTsRh9sXojVUvgPF0g==
+webpack@^5.17.0:
+  version "5.17.0"
+  resolved "http://localhost:4444/webpack/-/webpack-5.17.0.tgz#e92aebad45be25f86f788dc72fc11daacdcfd55d"
+  integrity sha512-R+IdNEaYcYaACpXZOt7reyc8txBK7J06lOPkX1SbgmeoAnUbyBZivJIksrDBnmMA3wlTWvPcX7DubxELyPB8rA==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
-    "@types/estree" "^0.0.45"
+    "@types/estree" "^0.0.46"
     "@webassemblyjs/ast" "1.11.0"
     "@webassemblyjs/wasm-edit" "1.11.0"
     "@webassemblyjs/wasm-parser" "1.11.0"
