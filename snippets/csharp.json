@@ -52,5 +52,28 @@
       "}",
       ""
     ]
+  },
+  "abpI18nResource": {
+    "prefix": "abpI18nResource",
+    "description": "",
+    "body": [
+      "Configure<AbpVirtualFileSystemOptions>(options =>",
+      "{",
+      "  options.FileSets.AddEmbedded<${4:${TM_FILENAME_BASE}}>(\"${1:AbpDz}\",\"/${2:AbpDzUI}\");",
+      "});",
+      "",
+      "Configure<AbpLocalizationOptions>(options =>",
+      "{",
+      "  options.Resources",
+      "    .Add<${3:AbpDzResource}>(\"en\")",
+      "    .AddVirtualJson(\"/$2\");",
+      "    options.DefaultResourceType = typeof($3);",
+      "});",
+      "",
+      "Configure<AbpExceptionLocalizationOptions>(options =>",
+      "{",
+      "  options.MapCodeNamespace(\"$1\", typeof($3));",
+      "});"
+    ]
   }
 }
