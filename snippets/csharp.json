@@ -10,5 +10,47 @@
       "}"
     ],
     "description": "ASP.NET Core - Creates a MVC/Api Action"
+  },
+
+  "abpMvcModule": {
+    "prefix": "abpMvcModule",
+    "description": "",
+    "body": [
+      "using System;",
+      "using Volo.Abp.Account;",
+      "using Volo.Abp.AutoMapper;",
+      "using Volo.Abp.FeatureManagement;",
+      "using Volo.Abp.Identity;",
+      "using Volo.Abp.Modularity;",
+      "using Volo.Abp.PermissionManagement;",
+      "using Volo.Abp.TenantManagement;",
+      "using Volo.Abp.AspNetCore.Mvc;",
+      "namespace ${3:${WORKSPACE_NAME}.${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}",
+      "{",
+      "    [DependsOn(",
+      "        typeof(AbpAccountApplicationModule),",
+      "        typeof(AbpIdentityApplicationModule),",
+      "        typeof(AbpPermissionManagementApplicationModule),",
+      "        typeof(AbpTenantManagementApplicationModule),",
+      "    )]",
+      "    public class ${1:${TM_FILENAME_BASE}} : AbpModule",
+      "    {",
+      "        public override void ConfigureServices(ServiceConfigurationContext context)",
+      "        {",
+      "            Configure<AbpAutoMapperOptions>(options =>",
+      "            {",
+      "                options.AddMaps<$1>();",
+      "            });",
+      "",
+      "            Configure<AbpAspNetCoreMvcOptions>(options =>",
+      "            {",
+      "                options.ConventionalControllers.Create(typeof($1).Assembly);",
+      "            });",
+      "            $0",
+      "        }",
+      "    }",
+      "}",
+      ""
+    ]
   }
 }
