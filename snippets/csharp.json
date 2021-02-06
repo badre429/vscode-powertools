@@ -75,5 +75,26 @@
       "  options.MapCodeNamespace(\"$1\", typeof($3));",
       "});"
     ]
+  },
+  "abpPermissionDefinitionProvider": {
+    "prefix": "abpPermissionDefinitionProvider",
+    "description": "",
+    "body": [
+      "using Volo.Abp.Authorization.Permissions;",
+      "",
+      "namespace ${3:${WORKSPACE_NAME}.${TM_DIRECTORY/^.*(\\/|\\\\)([^(\\/|\\\\)]+)$/$2/}}",
+      "{",
+      "    public class ${1:${TM_FILENAME_BASE}} : PermissionDefinitionProvider",
+      "    {",
+      "        public override void Define(IPermissionDefinitionContext context)",
+      "        {",
+      "            var myGroupname = \"${2:${WORKSPACE_NAME}}\";",
+      "            var myGroup = context.AddGroup(myGroupname);",
+      "",
+      "            myGroup.AddPermission(myGroupname+\"_TDB\");",
+      "        }",
+      "    }",
+      "}"
+    ]
   }
 }
