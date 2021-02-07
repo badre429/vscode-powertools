@@ -96,5 +96,28 @@
       "    }",
       "}"
     ]
-  }
+  },
+  "abpFullAuditedEntity": {
+    "prefix": "abpFullAuditedEntity",
+    "description": "",
+    "body": [
+      "public partial class ${1:${TM_FILENAME_BASE}} : FullAuditedAggregateRoot<Guid>, IEntityDto<Guid>",
+      "{",
+      "    public Guid Id",
+      "    {",
+      "        get { return base.Id; }",
+      "        set { base.Id = value; }",
+      "    }",
+      "    public static void OnModelCreating(ModelBuilder builder)",
+      "    {",
+      "        builder.Entity<${1}>(b =>",
+      "        {",
+      "            b.ToTable(nameof(${1}));",
+      "        });",
+      "    }",
+      "    public DbSet<${1}> ${1}s { get; set; }",
+      "}"
+    ]
+  },
+   
 }
