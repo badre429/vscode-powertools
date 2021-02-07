@@ -119,5 +119,13 @@
       "}"
     ]
   },
-   
+  "abpStringProp": {
+    "prefix": "abpStringProp",
+    "description": "",
+    "body": [
+      "[Display(Name = \"${4:${1}}\")]",
+      "[StringLength(${3:256})]",
+      "public ${2:string} ${1:PropName} { get; set; }${0}"
+    ]
+  } 
 }
