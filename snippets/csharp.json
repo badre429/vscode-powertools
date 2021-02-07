@@ -127,5 +127,13 @@
       "[StringLength(${3:256})]",
       "public ${2:string} ${1:PropName} { get; set; }${0}"
     ]
-  } 
+  },
+  "abpProp": {
+    "prefix": "abpProp",
+    "description": "",
+    "body": [
+      "[Display(Name = \"${4:${1}}\")]", 
+      "public ${2:int} ${1:PropName} { get; set; }${0}"
+    ]
+  }
 }
