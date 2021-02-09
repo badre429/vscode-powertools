@@ -132,8 +132,26 @@
     "prefix": "abpProp",
     "description": "",
     "body": [
-      "[Display(Name = \"${4:${1}}\")]", 
+      "[Display(Name = \"${4:${1}}\")]",
       "public ${2:int} ${1:PropName} { get; set; }${0}"
+    ]
+  },
+  "abpdzDesignTimeDbContextFactory": {
+    "prefix": "abpdzDesignTimeDbContextFactory",
+
+    "description": "",
+
+    "body": [
+      "public class ${1:${TM_FILENAME_BASE}}DesignTimeDbContextFactory : IDesignTimeDbContextFactory<${1}>",
+      "{",
+      "    public ${1} CreateDbContext(string[] args)",
+      "    {",
+      "        var optionsBuilder = new DbContextOptionsBuilder<${1}>();",
+      "        optionsBuilder.UseSqlite(\"Data Source=blog.db\");",
+
+      "        return new ${1}(optionsBuilder.Options);",
+      "    }",
+      "}"
     ]
   }
 }
