@@ -10,5 +10,42 @@
       "  $0",
       "</div>"
     ]
+  },
+  "apbDzPage": {
+    "prefix": "apbDzPage",
+    "description": "",
+    "body": [
+      "<div class=\"page-layout carded fullwidth inner-scroll\">",
+      "<div class=\"ngdz-loading-shade\" *ngIf=\"dataSource.loading$ | async\">",
+      "  <mat-spinner></mat-spinner>",
+      "</div>",
+      "<!-- HEADER -->",
+      "<div class=\"toolbar\">",
+      "  <div",
+      "    class=\"m-4 px-4\"",
+      "    fxLayout=\"column\"",
+      "    fxLayoutAlign=\"center center\"",
+      "    fxLayout.gt-sm=\"row\"",
+      "    fxLayoutGap.lt-md=\"8px\"",
+      "    fxLayoutAlign.gt-sm=\"space-between center\"",
+      "  >",
+      "    <!-- APP TITLE -->",
+      "    <div fxLayout=\"row\" fxLayoutAlign=\"start center\">",
+      "      <mat-icon> supervised_user_circle </mat-icon>",
+      "      <h1 [@animate]=\"{ value: '*', params: { delay: '100ms', x: '-25px' } }\">",
+      "        ${1:title}",
+      "      </h1>",
+      "    </div>",
+      "    <!-- / APP TITLE -->",
+      "",
+      "    <div class=\"search-wrapper mx-1\"></div>",
+      "    <div @slideInRight>",
+      "      <mat-icon>add</mat-icon>",
+      "    </div>",
+      "  </div>",
+      "</div>",
+      "<div class=\"content-card\">$0</div>",
+      "</div>"
+    ]
   }
 }
