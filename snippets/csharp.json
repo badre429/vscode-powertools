@@ -113,9 +113,11 @@
       "        builder.Entity<${1}>(b =>",
       "        {",
       "            b.ToTable(nameof(${1}));",
+      "            b.ConfigureByConvention();",
       "        });",
       "    }",
-      "    public DbSet<${1}> ${1}s { get; set; }",
+      "    // public DbSet<${1}> ${1}s { get; set; }", 
+      "    // ${1}.OnModelCreating(modelBuilder);",
       "}"
     ]
   },
