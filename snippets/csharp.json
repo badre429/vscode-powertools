@@ -166,10 +166,19 @@
       "{",
       "  public ${1}()\r",
       "  {",
-      "     CreateMap<${2:AbpEntity}, ${3:${2}Dto}>();",
+      "     CreateMap<${2:AbpEntity}, ${3:${2}Dto}>();$0",
       "  }",
       "}"
 
+    ]
+  },
+  "abpEntityDto": {
+    "prefix": "abpEntityDto",
+    "description": "",
+    "body": [
+      "public partial class ${1:${TM_FILENAME_BASE}}: IEntityDto<${2:Guid}>{",
+      "   public ${2} Id { get; set; }",
+      "}"
     ]
   }
 }
