@@ -108,5 +108,19 @@
       "  }",
       "}"
     ]
+  },
+  "abpPermissionGuardedRoute": {
+    "prefix": "abpPermissionGuardedRoute",
+    "description": "",
+    "body": [
+      "{",
+      "  canActivate: [PermissionGuard],\r",
+      "  path: 'log',\r",
+      "  component: ${1:AuditLogComponent},\r",
+      "  data: {\r",
+      "    requiredPolicy: 'AbpIdentity.Users',\r",
+      "  },",
+      "}$0,"
+    ]
   }
 }
