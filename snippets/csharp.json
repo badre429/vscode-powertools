@@ -116,7 +116,7 @@
       "            b.ConfigureByConvention();",
       "        });",
       "    }",
-      "    // public DbSet<${1}> ${1}s { get; set; }", 
+      "    // public DbSet<${1}> ${1}s { get; set; }",
       "    // ${1}.OnModelCreating(modelBuilder);",
       "}"
     ]
@@ -155,5 +155,18 @@
       "    }",
       "}"
     ]
-  }
+  },
+  "abpAutoMapper": {
+    "prefix": "abpAutoMapperProfile",
+    "description": "",
+    "body": [
+      "public class ${1:${TM_FILENAME_BASE}} : Profile",
+      "{",
+      "\tpublic ${1}()",
+      "\t{",
+      "\t\tCreateMap<${2:EntityType}, ${3:${2}Dto}>();$0",
+      "\t}",
+      "}"
+    ]
+  }, 
 }
