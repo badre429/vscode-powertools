@@ -30,7 +30,7 @@
       "import { ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';",
       "import { CommonModule } from '@angular/common';",
       "",
-      "import { ${1:${TM_FILENAME_BASE/(.*module)/${1:/pascalcase}/g}}RoutingModule } from './audit-routing.module';",
+      "import { ${1:${TM_FILENAME_BASE/(.*module)/${1:/pascalcase}/g}}RoutingModule } from './${TM_FILENAME_BASE/[\\.]module//}-routing.module';",
       "import { CoreModule, LazyModuleFactory } from '@abpdz/ng.core';",
       "import { ThemeSharedModule } from '@abpdz/ng.theme.shared';",
       "import { NgxValidateCoreModule } from '@ngx-validate/core';",

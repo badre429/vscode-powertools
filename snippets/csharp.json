@@ -173,8 +173,8 @@
     "prefix": "abpEntityDto",
     "description": "",
     "body": [
-      "public partial class ${1:${TM_FILENAME_BASE}}: IEntityDto<Guid>{",
-      "$0",
+      "public partial class ${1:${TM_FILENAME_BASE}}: IEntityDto<${2:Guid}>{",
+      "   public ${2} Id { get; set; }",
       "}"
     ]
   }
