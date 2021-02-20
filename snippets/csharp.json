@@ -168,5 +168,14 @@
       "\t}",
       "}"
     ]
-  }, 
+  },
+  "abpEntityDto": {
+    "prefix": "abpEntityDto",
+    "description": "",
+    "body": [
+      "public partial class ${1:${TM_FILENAME_BASE}}: IEntityDto<Guid>{",
+      "$0",
+      "}"
+    ]
+  }
 }
