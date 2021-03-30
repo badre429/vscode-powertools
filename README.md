@@ -4,9 +4,9 @@ A set of tools which improves developer productivity.
 
 ## Features
 
-### Archve workspace folder :
+### Archive workspace folder :
 
-run command **Archve workspace folder**
+run command **Archive workspace folder**
 
 archive current folder based on the `.gitignore` file if you wan't to cancel a git rule for archiver you add to `.gitinclude` file
 ![archive-workspace](https://s2.gifyu.com/images/archive-workspace.gif)
