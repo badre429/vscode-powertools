@@ -14,7 +14,7 @@
     "description": "",
     "body": [
       "<ItemGroup>",
-      "  <PackageReference Include=\"Volo.Abp.Core\" Version=\"${1:4.2.0}\" />",
+      "  <PackageReference Include=\"Volo.Abp.Core\" Version=\"${1:4.2.2}\" />",
       "  <PackageReference Include=\"Volo.Abp.AspNetCore.Mvc\" Version=\"$1\" />",
       "  <PackageReference Include=\"Volo.Abp.EntityFrameworkCore\" Version=\"$1\" />",
       "  <PackageReference Include=\"Volo.Abp.Account.Application\" Version=\"$1\" />",
