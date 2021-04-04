@@ -2,7 +2,7 @@
   "name": "bmgvscodepowertools",
   "displayName": "Bmg Power Tools",
   "description": "A set of tools (archive /export folder , encode string , hash string , sort lines , abp.io transalte keys ,abp.io list permission keys , i18n )",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "publisher": "badre429",
   "engines": {
     "vscode": "^1.53.0"
