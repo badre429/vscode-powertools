@@ -47,5 +47,15 @@
       "<div class=\"content-card\">$0</div>",
       "</div>"
     ]
+  },
+  "m-menu": {
+    "prefix": "m-menu",
+    "description": "",
+    "body": [
+      "<button mat-button [matMenuTriggerFor]=\"${1:menuName}\">${2:ButtonName}</button>\r",
+      "<mat-menu #menu=\"$1\">\r",
+      "  <button mat-menu-item>$0</button>\r",
+      "</mat-menu>"
+    ]
   }
 }
