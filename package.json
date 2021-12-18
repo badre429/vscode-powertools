@@ -152,7 +152,7 @@
     "vsce": "^1.100.1",
     "vscode": "^1.1.37",
     "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.0",
+    "webpack-cli": "^4.9.1",
     "zip-lib": "^0.7.2",
     "material-design-icons-iconfont": "^6.1.1",
     "vue": "^2.6.14",
